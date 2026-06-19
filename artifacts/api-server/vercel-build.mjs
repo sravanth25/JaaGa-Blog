@@ -12,6 +12,12 @@ execSync("pnpm install --no-frozen-lockfile", {
   cwd: workspaceRoot,
 });
 
+console.log("Building backend...");
+execSync("pnpm --filter @workspace/api-server run build", {
+  stdio: "inherit",
+  cwd: workspaceRoot,
+});
+
 console.log("Building frontend...");
 execSync("pnpm --filter @workspace/jaaga run build:vercel", {
   stdio: "inherit",

@@ -2,11 +2,20 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
+import { fileURLToPath } from "url";
+
+// Safely get directory name in ESM and bundled environments
+const currentDir = typeof __dirname !== "undefined"
+  ? __dirname
+  : path.dirname(fileURLToPath(import.meta.url));
 
 const dataFilePath = [
+  path.resolve(currentDir, "../data/posts.json"),
+  path.resolve(currentDir, "../../data/posts.json"),
+  path.resolve(currentDir, "../../../data/posts.json"),
   path.resolve(process.cwd(), "artifacts/api-server/data/posts.json"),
   path.resolve(process.cwd(), "data/posts.json"),
-].find((p) => fs.existsSync(p)) ?? path.resolve(process.cwd(), "data/posts.json");
+].find((p) => fs.existsSync(p)) ?? path.resolve(currentDir, "../data/posts.json");
 
 type Post = {
   id: number;
