@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "artifacts/*",
+    "lib/*",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "node artifacts/api-server/build.mjs && npx --prefix artifacts/jaaga vite build artifacts/jaaga",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "start": "node server.ts",
+    "dev": "concurrently \"PORT=8085 npm run dev --workspace=@workspace/api-server\" \"npm run dev --workspace=@workspace/jaaga\""
+  },
+  "devDependencies": {
+    "@vercel/node": "^5.8.3",
+    "concurrently": "^10.0.3",
+    "prettier": "^3.8.3",
+    "typescript": "~5.9.3"
+  }
+}

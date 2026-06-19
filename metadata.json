@@ -1,0 +1,10 @@
+{
+  "name": "JaaGa AI",
+  "description": "An Indian real estate legal intelligence platform and blog.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
