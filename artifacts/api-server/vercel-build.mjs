@@ -30,9 +30,16 @@ console.log("Copying build output to", dest);
 if (!existsSync(dest)) mkdirSync(dest, { recursive: true });
 cpSync(src, dest, { recursive: true });
 
-// Copy data/posts.json so serverless functions can read it
+// Copy data/posts.json so serverless functions can read it if it exists at the workspace root
 const dataDir = resolve(apiServerDir, "data");
 if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
-copyFileSync(resolve(workspaceRoot, "data/posts.json"), resolve(dataDir, "posts.json"));
+
+const workspacePosts = resolve(workspaceRoot, "data/posts.json");
+if (existsSync(workspacePosts)) {
+  console.log("Copying posts.json from workspace root...");
+  copyFileSync(workspacePosts, resolve(dataDir, "posts.json"));
+} else {
+  console.log("Keeping local artifacts/api-server/data/posts.json (no workspace root data/posts.json found).");
+}
 
 console.log("Done.");
