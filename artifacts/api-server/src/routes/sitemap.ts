@@ -2,6 +2,7 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import initialPosts from "../../data/posts.json" assert { type: "json" };
 
 // Safely get directory name in ESM and bundled environments
 const currentDir = typeof __dirname !== "undefined"
@@ -21,9 +22,19 @@ const sitemapRouter = Router();
 
 sitemapRouter.get("/sitemap.xml", (_req, res) => {
   try {
-    const posts: Array<{ slug: string }> = fs.existsSync(dataFilePath)
-      ? JSON.parse(fs.readFileSync(dataFilePath, "utf-8"))
-      : [];
+    let posts: Array<{ slug: string }> = [];
+    
+    try {
+      if (fs.existsSync(dataFilePath)) {
+        posts = JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
+      }
+    } catch (e) {
+      console.warn("Failed to read posts from disk for sitemap", e);
+    }
+
+    if (!posts || posts.length === 0) {
+      posts = initialPosts as Array<{ slug: string }>;
+    }
 
     const now = new Date().toISOString();
 

@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { z } from "zod";
 import { fileURLToPath } from "url";
+import initialPosts from "../../data/posts.json" assert { type: "json" };
 
 // Safely get directory name in ESM and bundled environments
 const currentDir = typeof __dirname !== "undefined"
@@ -31,13 +32,36 @@ type Post = {
   keywords: string;
 };
 
+let memoryPosts: Post[] = [];
+
 function getPosts(): Post[] {
-  if (!fs.existsSync(dataFilePath)) return [];
-  return JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
+  if (memoryPosts.length > 0) {
+    return memoryPosts;
+  }
+
+  try {
+    if (fs.existsSync(dataFilePath)) {
+      const data = fs.readFileSync(dataFilePath, "utf-8");
+      memoryPosts = JSON.parse(data);
+      if (memoryPosts.length > 0) {
+        return memoryPosts;
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to read posts from disk, falling back to bundled JSON data.", err);
+  }
+
+  memoryPosts = initialPosts as Post[];
+  return memoryPosts;
 }
 
 function savePosts(posts: Post[]) {
-  fs.writeFileSync(dataFilePath, JSON.stringify(posts, null, 2));
+  memoryPosts = posts;
+  try {
+    fs.writeFileSync(dataFilePath, JSON.stringify(posts, null, 2));
+  } catch (err) {
+    console.warn("Failed to write posts to disk (e.g. read-only filesystem on Vercel lambda). In-memory state remains updated.", err);
+  }
 }
 
 function generateSlug(title: string) {
