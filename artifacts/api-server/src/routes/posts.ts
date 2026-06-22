@@ -51,7 +51,7 @@ function getPosts(): Post[] {
     console.warn("Failed to read posts from disk, falling back to bundled JSON data.", err);
   }
 
-  memoryPosts = initialPosts as Post[];
+  memoryPosts = JSON.parse(JSON.stringify(initialPosts)) as Post[];
   return memoryPosts;
 }
 
@@ -286,7 +286,16 @@ postsRouter.post("/posts", (req, res) => {
     }
 
     const posts = getPosts();
-    posts.unshift(newPost);
+    const existingIndex = posts.findIndex((p) => p.slug === newPost.slug);
+    if (existingIndex !== -1) {
+      // If a post with the same slug already exists, we do a clean upsert (replace in-place)
+      // This is the expected and ideal behaviour for recurring automation/webhook runs.
+      // We retain the original id and creation order, but update the content.
+      newPost.id = posts[existingIndex].id;
+      posts[existingIndex] = newPost;
+    } else {
+      posts.unshift(newPost);
+    }
     savePosts(posts);
     return res.status(201).json(newPost);
   } catch (err) {
@@ -332,9 +341,9 @@ postsRouter.delete("/posts/:id", (req, res) => {
     const id = Number(req.params.id);
     const filtered = posts.filter((p) => p.id !== id);
     savePosts(filtered);
-    res.json({ success: true });
+    return res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ error: "Failed to delete post" });
+    return res.status(500).json({ error: "Failed to delete post" });
   }
 });
 
