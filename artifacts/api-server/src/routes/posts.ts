@@ -4,6 +4,7 @@ import path from "path";
 import { z } from "zod";
 import { fileURLToPath } from "url";
 import initialPosts from "../../data/posts.json" assert { type: "json" };
+import { getGitHubConfig, saveGitHubConfig, syncPostsToGitHub, pullPostsFromGitHub } from "../utils/github-sync";
 
 // Safely get directory name in ESM and bundled environments
 const currentDir = typeof __dirname !== "undefined"
@@ -55,12 +56,46 @@ function getPosts(): Post[] {
   return memoryPosts;
 }
 
+// Auto-pull from GitHub on startup if configured to prevent stale local data overriding production
+async function initGitSyncAndPull() {
+  const gitConfig = getGitHubConfig();
+  if (gitConfig) {
+    console.log("[Git-Sync] Configuration detected during startup. Attempting automatic database fetch from GitHub...");
+    try {
+      const result = await pullPostsFromGitHub(dataFilePath);
+      if (result.success && result.data) {
+        memoryPosts = result.data;
+        console.log(`[Git-Sync] Startup sync completed successfully! Loaded ${result.data.length} posts from GitHub repository.`);
+      } else {
+        console.warn(`[Git-Sync] Startup sync bypassed/unsuccessful: ${result.message}`);
+      }
+    } catch (err) {
+      console.error("[Git-Sync] Unexpected error during startup sync from GitHub:", err);
+    }
+  } else {
+    console.log("[Git-Sync] GitHub config not found on startup. Using local data storage.");
+  }
+}
+
+// Fire async startup sync
+initGitSyncAndPull();
+
+
 function savePosts(posts: Post[]) {
   memoryPosts = posts;
   try {
     fs.writeFileSync(dataFilePath, JSON.stringify(posts, null, 2));
   } catch (err) {
     console.warn("Failed to write posts to disk (e.g. read-only filesystem on Vercel lambda). In-memory state remains updated.", err);
+  }
+
+  // Trigger background sync to GitHub if configured
+  const gitConfig = getGitHubConfig();
+  if (gitConfig) {
+    console.log("[Git-Sync] Triggering background synchronization to GitHub repository...");
+    syncPostsToGitHub(posts).catch(err => {
+      console.error("[Git-Sync] Background sync to GitHub failed:", err);
+    });
   }
 }
 
@@ -346,5 +381,106 @@ postsRouter.delete("/posts/:id", (req, res) => {
     return res.status(500).json({ error: "Failed to delete post" });
   }
 });
+
+postsRouter.get("/github-sync/config", (req, res) => {
+  try {
+    const config = getGitHubConfig();
+    if (!config) {
+      return res.json({ configured: false });
+    }
+    // Mask the token for safety
+    const maskedToken = config.token.length > 8 
+      ? config.token.substring(0, 4) + "*".repeat(config.token.length - 8) + config.token.substring(config.token.length - 4)
+      : "****";
+    return res.json({
+      configured: true,
+      repo: config.repo,
+      branch: config.branch,
+      path: config.path,
+      token: maskedToken,
+    });
+  } catch (err: any) {
+    return res.status(500).json({ error: "Failed to read GitHub config", details: err?.message });
+  }
+});
+
+postsRouter.post("/github-sync/config", async (req, res) => {
+  try {
+    const { token, repo, branch, path: configPath } = req.body;
+    if (!token || !repo) {
+      return res.status(400).json({ error: "Token and repository details are required." });
+    }
+
+    // Handlers for masked token: if they didn't modify a masked token, preserve the old token!
+    let actualToken = token;
+    if (token.includes("***")) {
+      const existingConfig = getGitHubConfig();
+      if (existingConfig) {
+        actualToken = existingConfig.token;
+      } else {
+        return res.status(400).json({ error: "Invalid token value." });
+      }
+    }
+
+    const newConfig = {
+      token: actualToken,
+      repo,
+      branch: branch || "main",
+      path: configPath || "artifacts/api-server/data/posts.json",
+    };
+
+    const saved = saveGitHubConfig(newConfig);
+    if (!saved) {
+      return res.status(500).json({ error: "Failed to write configuration to local disk." });
+    }
+
+    // Instantly verification test
+    const testSync = await syncPostsToGitHub(getPosts());
+    if (testSync.success) {
+      return res.json({
+        success: true,
+        message: "Config saved and sync validated successfully!",
+        commitDetails: testSync.message,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: "Config saved, but synchronization failed.",
+        details: testSync.message,
+      });
+    }
+  } catch (err: any) {
+    return res.status(500).json({ error: "Failed to save or test GitHub config", details: err?.message });
+  }
+});
+
+postsRouter.post("/github-sync/force-sync", async (req, res) => {
+  try {
+    const posts = getPosts();
+    const result = await syncPostsToGitHub(posts);
+    if (result.success) {
+      return res.json({ success: true, message: result.message });
+    } else {
+      return res.status(400).json({ success: false, error: result.message });
+    }
+  } catch (err: any) {
+    return res.status(500).json({ error: "Sychronization failed", details: err?.message });
+  }
+});
+
+postsRouter.post("/github-sync/pull", async (req, res) => {
+  try {
+    const result = await pullPostsFromGitHub(dataFilePath);
+    if (result.success && result.data) {
+      memoryPosts = result.data;
+      return res.json({ success: true, message: result.message, count: result.data.length });
+    } else {
+      return res.status(400).json({ success: false, error: result.message });
+    }
+  } catch (err: any) {
+    return res.status(500).json({ error: "Failed to pull posts from GitHub", details: err?.message });
+  }
+});
+
 
 export default postsRouter;

@@ -1,5 +1,6 @@
 import { BlogEditor } from "@/components/blog/blog-editor";
 import { ExistingPosts } from "@/components/blog/existing-posts";
+import { GitHubSyncSettings } from "@/components/blog/github-sync-settings";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/context/auth-context";
 import { useLocation } from "wouter";
@@ -39,9 +40,9 @@ export default function BlogEditorPage() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
       <div className="mx-auto max-w-4xl space-y-12">
-        <div>
+        <div className="space-y-8">
           <div className="text-center mb-12 flex justify-between items-center">
-            <div>
+            <div className="text-left">
               <h1 className="font-headline text-4xl md:text-5xl font-bold tracking-tighter">
                 Blog Post Editor
               </h1>
@@ -51,6 +52,9 @@ export default function BlogEditorPage() {
             </div>
             <Button onClick={logout} variant="outline">Logout</Button>
           </div>
+          
+          <GitHubSyncSettings />
+
           <BlogEditor />
         </div>
 
