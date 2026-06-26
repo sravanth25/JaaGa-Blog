@@ -7,8 +7,15 @@ const currentDir = typeof __dirname !== "undefined"
   ? __dirname
   : path.dirname(fileURLToPath(import.meta.url));
 
-const rootDataDir = path.resolve(currentDir, "../data");
-const configFilePath = path.join(rootDataDir, "github-config.json");
+const configFilePath = [
+  path.resolve(currentDir, "../data/github-config.json"),
+  path.resolve(currentDir, "../../data/github-config.json"),
+  path.resolve(currentDir, "../../../data/github-config.json"),
+  path.resolve(process.cwd(), "artifacts/api-server/data/github-config.json"),
+  path.resolve(process.cwd(), "data/github-config.json"),
+].find((p) => fs.existsSync(p)) ?? path.resolve(currentDir, "../../data/github-config.json");
+
+const rootDataDir = path.dirname(configFilePath);
 
 export interface GitHubConfig {
   token: string;

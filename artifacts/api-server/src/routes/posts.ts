@@ -434,19 +434,36 @@ postsRouter.post("/github-sync/config", async (req, res) => {
       return res.status(500).json({ error: "Failed to write configuration to local disk." });
     }
 
-    // Instantly verification test
-    const testSync = await syncPostsToGitHub(getPosts());
-    if (testSync.success) {
+    // Instantly verification test - pull from GitHub first to avoid overwriting live blogs
+    const testPull = await pullPostsFromGitHub(dataFilePath);
+    if (testPull.success && testPull.data) {
+      memoryPosts = testPull.data;
       return res.json({
         success: true,
-        message: "Config saved and sync validated successfully!",
-        commitDetails: testSync.message,
+        message: "GitHub integration configured and live database synchronized successfully!",
+        commitDetails: testPull.message,
       });
+    } else if (testPull.message && testPull.message.includes("No database found on GitHub")) {
+      // Initialize the database on GitHub since it does not exist there yet
+      const initSync = await syncPostsToGitHub(getPosts());
+      if (initSync.success) {
+        return res.json({
+          success: true,
+          message: "GitHub integration configured and database initialized on GitHub successfully!",
+          commitDetails: initSync.message,
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          error: "Config saved, but failed to initialize database on GitHub.",
+          details: initSync.message,
+        });
+      }
     } else {
       return res.status(400).json({
         success: false,
-        error: "Config saved, but synchronization failed.",
-        details: testSync.message,
+        error: "GitHub integration validation failed.",
+        details: testPull.message,
       });
     }
   } catch (err: any) {
