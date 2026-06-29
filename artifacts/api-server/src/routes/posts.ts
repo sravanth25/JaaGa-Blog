@@ -81,7 +81,7 @@ async function initGitSyncAndPull() {
 initGitSyncAndPull();
 
 
-function savePosts(posts: Post[]) {
+async function savePosts(posts: Post[]) {
   memoryPosts = posts;
   try {
     fs.writeFileSync(dataFilePath, JSON.stringify(posts, null, 2));
@@ -93,9 +93,12 @@ function savePosts(posts: Post[]) {
   const gitConfig = getGitHubConfig();
   if (gitConfig) {
     console.log("[Git-Sync] Triggering background synchronization to GitHub repository...");
-    syncPostsToGitHub(posts).catch(err => {
+    try {
+      await syncPostsToGitHub(posts);
+      console.log("[Git-Sync] Background synchronization completed successfully.");
+    } catch (err) {
       console.error("[Git-Sync] Background sync to GitHub failed:", err);
-    });
+    }
   }
 }
 
@@ -253,7 +256,7 @@ postsRouter.get("/posts", (_req, res) => {
   res.json(posts);
 });
 
-postsRouter.post("/posts", (req, res) => {
+postsRouter.post("/posts", async (req, res) => {
   try {
     // 1. Verify access key
     if (!verifyApiKey(req)) {
@@ -261,6 +264,21 @@ postsRouter.post("/posts", (req, res) => {
         error: "Unauthorized", 
         message: "A valid API key is required to publish posts. Provide x-api-key header." 
       });
+    }
+
+    // Attempt to pull latest posts from GitHub first to ensure we do not overwrite other/automated additions
+    const gitConfig = getGitHubConfig();
+    if (gitConfig) {
+      console.log("[Git-Sync] Pulling latest posts from GitHub before saving new post...");
+      try {
+        const pullResult = await pullPostsFromGitHub(dataFilePath);
+        if (pullResult.success && pullResult.data) {
+          memoryPosts = pullResult.data;
+          console.log(`[Git-Sync] Pulled latest database with ${pullResult.data.length} posts before adding.`);
+        }
+      } catch (err) {
+        console.warn("[Git-Sync] Failed to pull latest posts before write, proceeding with local memory data:", err);
+      }
     }
 
     const body = req.body;
@@ -331,7 +349,7 @@ postsRouter.post("/posts", (req, res) => {
     } else {
       posts.unshift(newPost);
     }
-    savePosts(posts);
+    await savePosts(posts);
     return res.status(201).json(newPost);
   } catch (err) {
     if (err instanceof SyntaxError) {
@@ -342,7 +360,7 @@ postsRouter.post("/posts", (req, res) => {
   }
 });
 
-postsRouter.put("/posts/:id", (req, res) => {
+postsRouter.put("/posts/:id", async (req, res) => {
   try {
     if (!verifyApiKey(req)) {
       return res.status(401).json({ 
@@ -351,19 +369,34 @@ postsRouter.put("/posts/:id", (req, res) => {
       });
     }
 
+    // Attempt to pull latest posts from GitHub first to ensure we do not overwrite other/automated additions
+    const gitConfig = getGitHubConfig();
+    if (gitConfig) {
+      console.log("[Git-Sync] Pulling latest posts from GitHub before updating post...");
+      try {
+        const pullResult = await pullPostsFromGitHub(dataFilePath);
+        if (pullResult.success && pullResult.data) {
+          memoryPosts = pullResult.data;
+          console.log(`[Git-Sync] Pulled latest database with ${pullResult.data.length} posts before updating.`);
+        }
+      } catch (err) {
+        console.warn("[Git-Sync] Failed to pull latest posts before write, proceeding with local memory data:", err);
+      }
+    }
+
     const posts = getPosts();
     const id = Number(req.params.id);
     const idx = posts.findIndex((p) => p.id === id);
     if (idx === -1) return res.status(404).json({ error: "Post not found" });
     posts[idx] = { ...posts[idx], ...req.body };
-    savePosts(posts);
+    await savePosts(posts);
     return res.json(posts[idx]);
   } catch (err) {
     return res.status(500).json({ error: "Failed to update post" });
   }
 });
 
-postsRouter.delete("/posts/:id", (req, res) => {
+postsRouter.delete("/posts/:id", async (req, res) => {
   try {
     if (!verifyApiKey(req)) {
       return res.status(401).json({ 
@@ -372,10 +405,25 @@ postsRouter.delete("/posts/:id", (req, res) => {
       });
     }
 
+    // Attempt to pull latest posts from GitHub first to ensure we do not overwrite other/automated additions
+    const gitConfig = getGitHubConfig();
+    if (gitConfig) {
+      console.log("[Git-Sync] Pulling latest posts from GitHub before deleting post...");
+      try {
+        const pullResult = await pullPostsFromGitHub(dataFilePath);
+        if (pullResult.success && pullResult.data) {
+          memoryPosts = pullResult.data;
+          console.log(`[Git-Sync] Pulled latest database with ${pullResult.data.length} posts before deleting.`);
+        }
+      } catch (err) {
+        console.warn("[Git-Sync] Failed to pull latest posts before write, proceeding with local memory data:", err);
+      }
+    }
+
     const posts = getPosts();
     const id = Number(req.params.id);
     const filtered = posts.filter((p) => p.id !== id);
-    savePosts(filtered);
+    await savePosts(filtered);
     return res.json({ success: true });
   } catch (err) {
     return res.status(500).json({ error: "Failed to delete post" });

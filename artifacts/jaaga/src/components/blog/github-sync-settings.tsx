@@ -316,6 +316,29 @@ export function GitHubSyncSettings() {
               </ol>
             </div>
 
+            <div className="rounded-md bg-amber-50 dark:bg-amber-950/20 p-4 border border-amber-200/60 space-y-2 text-xs text-amber-900 dark:text-amber-200">
+              <h4 className="font-semibold flex items-center gap-1 text-amber-800 dark:text-amber-300">
+                <AlertTriangle className="h-4 w-4 text-amber-500" />
+                CRITICAL FOR PRODUCTION (Vercel, Cloud Run, Netlify):
+              </h4>
+              <p className="leading-relaxed">
+                Saving settings here writes a temporary <code>github-config.json</code> file to the server's disk. 
+                On serverless platforms like Vercel or Cloud Run, the local disk is <strong>ephemeral</strong> and gets wiped clean on every redeployment, server restart, or container scale-down!
+              </p>
+              <p className="leading-relaxed font-semibold">
+                To keep GitHub Sync permanently active so that n8n automated blogs never get lost, you MUST configure these Environment Variables in your hosting provider's dashboard (e.g. Vercel Project Settings):
+              </p>
+              <ul className="list-disc pl-4 space-y-1">
+                <li><code>GITHUB_TOKEN</code> = <span className="font-mono">your_github_personal_access_token</span></li>
+                <li><code>GITHUB_REPO</code> = <span className="font-mono">{repo || "your_username/your_repository_name"}</span></li>
+                <li><code>GITHUB_BRANCH</code> = <span className="font-mono">{branch || "main"}</span></li>
+                <li><code>GITHUB_PATH</code> = <span className="font-mono">{filePath || "artifacts/api-server/data/posts.json"}</span></li>
+              </ul>
+              <p className="leading-relaxed italic mt-1 text-[11px]">
+                Once these environment variables are set in production, the Git-Sync module will stay active permanently across all restarts and redeployments automatically!
+              </p>
+            </div>
+
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
               <div className="text-sm text-yellow-600 font-medium">
                 {statusMessage}
