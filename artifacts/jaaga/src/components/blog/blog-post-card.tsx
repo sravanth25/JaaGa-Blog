@@ -16,14 +16,14 @@ export function BlogPostCard({post}: BlogPostCardProps) {
   const category = categories.find(c => c.slug === post.category);
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+    <Card className="group flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       {post.featuredImage && (
         <Link href={`/blogs/${post.slug}`} className="block" aria-label={`Read more about ${post.title}`}>
           <div className="relative aspect-video overflow-hidden">
             <img
               src={post.featuredImage}
               alt={post.title}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </Link>
