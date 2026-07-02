@@ -76,4 +76,42 @@ ${urlEntries}
   }
 });
 
+sitemapRouter.get("/llms.txt", (_req, res) => {
+  try {
+    const possiblePaths = [
+      path.resolve(currentDir, "../public/llms.txt"),
+      path.resolve(currentDir, "../../public/llms.txt"),
+      path.resolve(currentDir, "../../../public/llms.txt"),
+      path.resolve(process.cwd(), "artifacts/jaaga/public/llms.txt"),
+      path.resolve(process.cwd(), "public/llms.txt"),
+    ];
+    
+    const llmsFilePath = possiblePaths.find((p) => fs.existsSync(p));
+
+    if (llmsFilePath && fs.existsSync(llmsFilePath)) {
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      return res.sendFile(llmsFilePath);
+    }
+
+    // Fallback if file is somehow missing from disk
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.send(`# JaaGa AI
+
+JaaGa AI helps property owners and real estate professionals in India access land records, property documents, risk reports, survey maps, and legal verification.
+
+## Key Pages
+- Property documents: https://www.jaaga.ai/...
+- Blog: https://blog.jaaga.ai/blogs
+- EC Telangana guide: https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana
+- ROR / Adangal / 1B guide: https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide
+- FMB Tamil Nadu guide: https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026
+
+## Sitemaps
+- https://www.jaaga.ai/sitemap.xml
+- https://blog.jaaga.ai/sitemap.xml`);
+  } catch (err) {
+    res.status(500).setHeader("Content-Type", "text/plain").send("Failed to load llms.txt");
+  }
+});
+
 export default sitemapRouter;

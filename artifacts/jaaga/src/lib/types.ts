@@ -26,4 +26,9 @@ export type Post = {
   metaTitle: string;
   metaDescription: string;
   keywords: string;
+  primaryKeyword?: string;
+  canonicalUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  schemaType?: string;
 };

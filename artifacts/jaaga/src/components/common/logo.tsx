@@ -1,10 +1,9 @@
-import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link
-      href="https://www.jaaga.ai"
+    <a
+      href="https://www.jaaga.ai/"
       className={cn("inline-flex items-center gap-2", className)}
       aria-label="Back to homepage"
     >
@@ -24,6 +23,6 @@ export function Logo({ className }: { className?: string }) {
           fill="#1F3667"
         />
       </svg>
-    </Link>
+    </a>
   );
 }

@@ -37,7 +37,7 @@ export function useBlogPostSchema(post: Post | null) {
 
     const articleSchema = {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": post.schemaType || "BlogPosting",
       headline: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
       image: post.featuredImage

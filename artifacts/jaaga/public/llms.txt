@@ -1,28 +1,14 @@
-# JaaGa
+# JaaGa AI
 
-JaaGa is India's leading Property Intelligence & Compliance Platform, designed to bring transparency, security, and simplicity to the Indian real estate market. We leverage technology to empower property owners and buyers with the data and services they need to make confident decisions.
+JaaGa AI helps property owners and real estate professionals in India access land records, property documents, risk reports, survey maps, and legal verification.
 
-## Core Services
-- **Property Audit Report:** In-depth analysis and reporting on property titles and documentation.
-- **Property Documents:** Digital management and instant retrieval of essential land records like EC, Adangal, ROR-1B, 7/12 Utara, and Patta & Chitta.
-- **Legal Verification:** Comprehensive legal checks and signed legal opinions from expert property lawyers.
-- **Digital Land Survey:** High-precision digital surveying to define and protect property boundaries.
-- **Property Monitoring:** Real-time alerts for any changes or transactions related to your property.
-- **Utility Updates:** Streamlined services for name transfers on Electricity Bills and Property Tax records.
+## Key Pages
+- Property documents: https://www.jaaga.ai/...
+- Blog: https://blog.jaaga.ai/blogs
+- EC Telangana guide: https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana
+- ROR / Adangal / 1B guide: https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide
+- FMB Tamil Nadu guide: https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026
 
-## Regional Coverage
-We provide localized expertise and document retrieval services across:
-- Telangana
-- Andhra Pradesh
-- Tamil Nadu
-- Karnataka
-- Maharashtra
-- Odisha
-
-## Official Resources
-- Main Platform: [https://www.jaaga.ai](https://www.jaaga.ai)
-- Insights & Blog: [https://blog.jaaga.ai](https://blog.jaaga.ai)
-- Mobile App: [https://www.jaaga.ai/app](https://www.jaaga.ai/app)
-
-## Mission
-To build trust in Indian real estate by transforming complex legal processes into clear, digital-first experiences.
+## Sitemaps
+- https://www.jaaga.ai/sitemap.xml
+- https://blog.jaaga.ai/sitemap.xml
