@@ -31,4 +31,8 @@ export type Post = {
   ogTitle?: string;
   ogDescription?: string;
   schemaType?: string;
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
 };

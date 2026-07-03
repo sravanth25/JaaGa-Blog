@@ -17,7 +17,7 @@ import {
 import type { Post } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import { usePageMeta } from "@/lib/use-page-meta";
-import { useBlogPostSchema, useWebPageSchema } from "@/lib/use-page-schema";
+import { useBlogPostSchema, useWebPageSchema, useBlogPostFAQSchema } from "@/lib/use-page-schema";
 
 export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
@@ -46,6 +46,7 @@ export default function BlogPostPage() {
 
   useBlogPostSchema(post);
   useWebPageSchema(post?.metaTitle || post?.title || "Blog Post", post?.metaDescription || post?.excerpt || "");
+  useBlogPostFAQSchema(post?.faqs || []);
 
   useEffect(() => {
     fetchBlogs().then(posts => {
@@ -129,6 +130,24 @@ export default function BlogPostPage() {
               </a>
             </Button>
           </div>
+
+          {post.faqs && post.faqs.length > 0 && (
+            <section className="mt-12 space-y-6">
+              <h2 className="font-headline text-2xl font-bold border-b pb-2">Frequently Asked Questions</h2>
+              <Accordion type="single" collapsible className="w-full">
+                {post.faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionTrigger className="text-left font-semibold py-4 hover:no-underline">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed pb-4">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+          )}
 
           <Separator className="my-12" />
 
