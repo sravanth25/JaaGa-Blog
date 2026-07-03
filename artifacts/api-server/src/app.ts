@@ -43,7 +43,7 @@ const staticPath = path.resolve(process.cwd(), "artifacts/jaaga/dist/public");
 if (fs.existsSync(staticPath)) {
   app.use(express.static(staticPath));
   
-  app.get("*all", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(staticPath, "index.html"));
   });
 }
