@@ -31,6 +31,7 @@ type Post = {
   metaTitle: string;
   metaDescription: string;
   keywords: string;
+  updatedAt?: string;
 };
 
 let memoryPosts: Post[] = [];
@@ -244,6 +245,7 @@ function transformThirdPartyPayload(body: Record<string, unknown>): Post | null 
       metaTitle: body.title,
       metaDescription: excerpt,
       keywords: "webhook, automated post",
+      updatedAt: new Date().toISOString(),
     };
   }
   return null;
@@ -325,6 +327,7 @@ postsRouter.post("/posts", async (req, res) => {
         metaTitle,
         metaDescription,
         keywords,
+        updatedAt: new Date().toISOString(),
       };
     } else {
       validationError = standardValidation.error;
@@ -388,7 +391,7 @@ postsRouter.put("/posts/:id", async (req, res) => {
     const id = Number(req.params.id);
     const idx = posts.findIndex((p) => p.id === id);
     if (idx === -1) return res.status(404).json({ error: "Post not found" });
-    posts[idx] = { ...posts[idx], ...req.body };
+    posts[idx] = { ...posts[idx], ...req.body, updatedAt: new Date().toISOString() };
     await savePosts(posts);
     return res.json(posts[idx]);
   } catch (err) {

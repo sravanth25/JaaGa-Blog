@@ -22,7 +22,7 @@ const sitemapRouter = Router();
 
 sitemapRouter.get("/sitemap.xml", (_req, res) => {
   try {
-    let posts: Array<{ slug: string }> = [];
+    let posts: Array<{ id?: number; slug: string; updatedAt?: string }> = [];
     
     try {
       if (fs.existsSync(dataFilePath)) {
@@ -33,23 +33,43 @@ sitemapRouter.get("/sitemap.xml", (_req, res) => {
     }
 
     if (!posts || posts.length === 0) {
-      posts = initialPosts as Array<{ slug: string }>;
+      posts = initialPosts as Array<{ id?: number; slug: string; updatedAt?: string }>;
     }
 
     const now = new Date().toISOString();
 
     const staticUrls = [
-      { loc: BASE_URL, priority: "1.0", changefreq: "daily" },
-      { loc: `${BASE_URL}/blogs`, priority: "0.95", changefreq: "daily" },
-      { loc: `${BASE_URL}/about`, priority: "0.8", changefreq: "monthly" },
-      { loc: `${BASE_URL}/contact-us`, priority: "0.7", changefreq: "monthly" },
+      { loc: BASE_URL, lastmod: now, priority: "1.0", changefreq: "daily" },
+      { loc: `${BASE_URL}/blogs`, lastmod: now, priority: "0.95", changefreq: "daily" },
+      { loc: `${BASE_URL}/about`, lastmod: now, priority: "0.8", changefreq: "monthly" },
+      { loc: `${BASE_URL}/contact-us`, lastmod: now, priority: "0.7", changefreq: "monthly" },
     ];
 
-    const postUrls = posts.map((p) => ({
-      loc: `${BASE_URL}/blogs/${p.slug}`,
-      priority: "0.9",
-      changefreq: "weekly",
-    }));
+    const postUrls = posts.map((p) => {
+      let lastmod = now;
+      if (p.updatedAt) {
+        try {
+          const d = new Date(p.updatedAt);
+          if (!isNaN(d.getTime())) {
+            lastmod = d.toISOString();
+          }
+        } catch (_) {}
+      } else if (p.id && typeof p.id === "number") {
+        try {
+          const d = new Date(p.id);
+          if (!isNaN(d.getTime())) {
+            lastmod = d.toISOString();
+          }
+        } catch (_) {}
+      }
+
+      return {
+        loc: `${BASE_URL}/blogs/${p.slug}`,
+        lastmod,
+        priority: "0.9",
+        changefreq: "weekly",
+      };
+    });
 
     const allUrls = [...staticUrls, ...postUrls];
 
@@ -57,7 +77,7 @@ sitemapRouter.get("/sitemap.xml", (_req, res) => {
       .map(
         (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${u.lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`
