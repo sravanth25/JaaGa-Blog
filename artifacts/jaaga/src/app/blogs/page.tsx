@@ -97,7 +97,9 @@ const pageKeywords = [
 ];
 
 export const metadata: Metadata = {
-  title: pageTitle,
+  title: {
+    absolute: pageTitle,
+  },
   description: pageDescription,
   keywords: pageKeywords,
   alternates: {

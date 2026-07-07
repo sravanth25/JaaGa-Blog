@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { getPosts } from '@/lib/server/data';
+import { blogSEOMap } from '@/lib/blog-seo-data';
 
 import {categories, services} from '@/lib/data';
 
@@ -44,30 +45,51 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     };
   }
 
+  const seo = blogSEOMap[awaitedParams.slug];
+  const pageTitle = seo ? seo.title : post.metaTitle;
+  const pageDesc = seo ? seo.description : post.metaDescription;
+  const pageKeywords = seo ? seo.keywords : post.keywords;
+
   const images = post.featuredImage
     ? [
         {
           url: post.featuredImage,
-          width: 800,
-          height: 450,
-          alt: post.title,
+          width: 1200,
+          height: 630,
+          alt: pageTitle,
         },
       ]
-    : [];
+    : [
+        {
+          url: 'https://ik.imagekit.io/jaaga/ChatGPT%20Image%20Jan%205,%202026,%2011_05_39%20AM.png',
+          width: 1200,
+          height: 630,
+          alt: 'JaaGa Insights',
+        },
+      ];
 
   return {
-    title: post.metaTitle,
-    description: post.metaDescription,
-    keywords: post.keywords,
+    title: {
+      absolute: pageTitle,
+    },
+    description: pageDesc,
+    keywords: pageKeywords,
     alternates: {
       canonical: `https://blog.jaaga.ai/blogs/${post.slug}`,
     },
     openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title: pageTitle,
+      description: pageDesc,
       type: 'article',
       url: `https://blog.jaaga.ai/blogs/${post.slug}`,
       images: images,
+      siteName: 'JaaGa',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDesc,
+      images: [images[0].url],
     },
   };
 }
@@ -81,11 +103,16 @@ export default async function BlogPostPage({params}: Props) {
     notFound();
   }
 
+  const seo = blogSEOMap[awaitedParams.slug];
+  const h1Text = seo ? seo.h1 : post.title;
+  const pageDesc = seo ? seo.description : post.metaDescription;
+  const pageKeywords = seo ? seo.keywords : post.keywords;
+
   const category = categories.find(c => c.slug === post.category);
   const breadcrumbItems = [
     {label: 'Home', href: '/'},
     {label: 'Blogs', href: '/blogs'},
-    {label: post.title, href: `/blogs/${post.slug}`},
+    {label: h1Text, href: `/blogs/${post.slug}`},
   ];
 
   const relatedPosts = posts
@@ -96,12 +123,12 @@ export default async function BlogPostPage({params}: Props) {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.metaDescription,
-    "image": post.featuredImage,
+    "headline": h1Text,
+    "description": pageDesc,
+    "image": post.featuredImage || 'https://ik.imagekit.io/jaaga/ChatGPT%20Image%20Jan%205,%202026,%2011_05_39%20AM.png',
     "author": {
       "@type": "Organization",
-      "name": "JaaGa Team",
+      "name": "JaaGa",
       "url": "https://www.jaaga.ai"
     },
     "publisher": {
@@ -112,8 +139,14 @@ export default async function BlogPostPage({params}: Props) {
         "url": "https://ik.imagekit.io/jaaga/Untitled%20design%20(2).jpg"
       }
     },
-    "datePublished": new Date(post.id).toISOString(),
-    "url": `https://blog.jaaga.ai/blogs/${post.slug}`
+    "datePublished": new Date(post.id).toISOString().split('T')[0],
+    "dateModified": new Date(post.id).toISOString().split('T')[0],
+    "url": `https://blog.jaaga.ai/blogs/${post.slug}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://blog.jaaga.ai/blogs/${post.slug}`
+    },
+    "keywords": pageKeywords
   };
 
   // Breadcrumb Schema
@@ -731,7 +764,7 @@ export default async function BlogPostPage({params}: Props) {
                   </Link>
                 )}
                 <h1 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter mt-2">
-                  {post.title}
+                  {h1Text}
                 </h1>
               </div>
             </div>
@@ -794,6 +827,20 @@ export default async function BlogPostPage({params}: Props) {
               </div>
             </section>
           )}
+
+          <Separator className="my-12" />
+
+          <section className="space-y-8">
+            <h2 className="font-headline text-2xl font-bold">Explore All Insights</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {posts
+                .filter(p => p.slug !== post.slug)
+                .sort((a, b) => (b.id || 0) - (a.id || 0))
+                .map(op => (
+                  <BlogPostCard key={op.id} post={op} />
+                ))}
+            </div>
+          </section>
 
           <Separator className="my-8" />
 
