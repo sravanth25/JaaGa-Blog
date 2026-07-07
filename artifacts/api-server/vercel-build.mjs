@@ -19,12 +19,12 @@ execSync("pnpm --filter @workspace/api-server run build", {
 });
 
 console.log("Building frontend...");
-execSync("pnpm --filter @workspace/jaaga run build:vercel", {
+execSync("pnpm --filter @workspace/jaaga run build", {
   stdio: "inherit",
   cwd: workspaceRoot,
 });
 
-const src = resolve(workspaceRoot, "artifacts/jaaga/dist");
+const src = resolve(workspaceRoot, "artifacts/jaaga/dist/public");
 const dest = resolve(apiServerDir, "dist");
 
 if (!existsSync(src)) {
