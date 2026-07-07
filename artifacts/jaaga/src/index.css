@@ -335,4 +335,23 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Fix buttons inside .prose having incorrect text color or underline from typography plugin */
+  .prose a.bg-primary, 
+  .prose a[class*="bg-primary"],
+  .prose a.inline-flex,
+  .prose a.inline-block {
+    text-decoration: none !important;
+  }
+  
+  .prose a.bg-primary, 
+  .prose a[class*="bg-primary"] {
+    color: hsl(var(--primary-foreground)) !important;
+  }
+  
+  .prose a.bg-primary:hover, 
+  .prose a[class*="bg-primary"]:hover {
+    color: hsl(var(--primary-foreground)) !important;
+    opacity: 0.9;
+  }
 }
