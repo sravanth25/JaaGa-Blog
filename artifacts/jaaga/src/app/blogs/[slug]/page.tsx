@@ -60,7 +60,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     description: post.metaDescription,
     keywords: post.keywords,
     alternates: {
-      canonical: `/blogs/${post.slug}`,
+      canonical: `https://blog.jaaga.ai/blogs/${post.slug}`,
     },
     openGraph: {
       title: post.metaTitle,
