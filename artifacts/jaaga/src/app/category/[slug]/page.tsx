@@ -1,8 +1,11 @@
 
 
-import { categories} from '@/lib/data';
-import {BlogPostCard} from '@/components/blog/blog-post-card';
-import {Breadcrumb} from '@/components/common/breadcrumb';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getPosts } from '@/lib/server/data';
+import { categories } from '@/lib/data';
+import { BlogPostCard } from '@/components/blog/blog-post-card';
+import { Breadcrumb } from '@/components/common/breadcrumb';
 
 
 type Props = {

@@ -1,24 +1,26 @@
 
 
 
+'use client';
+
 import { BlogEditor } from '@/components/blog/blog-editor';
 import { ExistingPosts } from '@/components/blog/existing-posts';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/context/auth-context';
-import { useLocation } from 'wouter';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 
 export default function BlogEditorPage() {
   const { isAuthenticated, isLoading, logout } = useAuth();
-  const [, navigate] = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      navigate("/login");
+      router.push("/login");
     }
-  }, [isLoading, isAuthenticated, navigate]);
+  }, [isLoading, isAuthenticated, router]);
 
   if (isLoading || !isAuthenticated) {
     return (

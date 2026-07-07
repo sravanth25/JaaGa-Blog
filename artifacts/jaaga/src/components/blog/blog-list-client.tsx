@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useMemo } from "react";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { Input } from "@/components/ui/input";

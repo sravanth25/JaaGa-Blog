@@ -1,6 +1,8 @@
 
 
-import { Link } from 'wouter';
+'use client';
+
+import Link from 'next/link';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Search} from 'lucide-react';

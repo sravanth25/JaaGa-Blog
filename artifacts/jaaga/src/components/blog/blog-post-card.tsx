@@ -1,7 +1,7 @@
 
 
 
-import { Link } from 'wouter';
+import Link from 'next/link';
 import {ArrowRight} from 'lucide-react';
 import type {Post} from '@/lib/types';
 import {Badge} from '@/components/ui/badge';

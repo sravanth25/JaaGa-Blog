@@ -1,8 +1,10 @@
 
 
 
-import { Link } from 'wouter';
-import { useLocation } from 'wouter';
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {Menu, ArrowUpRight} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {
@@ -24,7 +26,7 @@ const mainNavLinks = [
 const otherLinks = [{href: '/blog/editor', label: 'Editor'}];
 
 export function Header() {
-  const [pathname] = useLocation();
+  const pathname = usePathname();
   const [isSheetOpen, setSheetOpen] = useState(false);
 
   const NavLink = ({href, children}: {href: string; children: React.ReactNode}) => {

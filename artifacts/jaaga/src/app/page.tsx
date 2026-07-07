@@ -1,5 +1,6 @@
 
-import { Link } from "wouter";
+import Link from "next/link";
+import { getPosts } from "@/lib/server/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { categories } from "@/lib/data";
@@ -13,8 +14,8 @@ import { FAQSection } from "@/components/ui/faqsection";
 
 function Hero() {
   return (
-    <div className="w-full py-12 lg:py-12">
-      <div className="container mx-auto text-center md:text-left">
+    <div className="w-full py-16 md:py-24 lg:py-28">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center md:text-left">
         <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
           <div className="flex flex-col gap-4 items-center md:items-start">
             <div>
@@ -49,29 +50,26 @@ function Hero() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative aspect-square rounded-md overflow-hidden">
-              <Image
+              <img
                 src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412661/realtor-making-deal-with-customer-office_1_1_f3wp59.jpg"
                 alt="Property document"
-                fill
-                className="object-cover"
+                className="object-cover w-full h-full"
                 data-ai-hint="document analysis"
               />
             </div>
             <div className="relative row-span-2 rounded-md overflow-hidden">
-              <Image
+              <img
                 src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412451/amazing-aerial-shot-singapore-cityscape-with-lots-skyscrapers_1_mj05sc.jpg"
                 alt="Modern architecture"
-                fill
-                className="object-cover"
+                className="object-cover w-full h-full"
                 data-ai-hint="modern architecture"
               />
             </div>
             <div className="relative aspect-square rounded-md overflow-hidden">
-              <Image
+              <img
                 src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412732/closeup-shot-businessman-signing-some-official-papers_1_ngomux.jpg"
                 alt="Digital land survey"
-                fill
-                className="object-cover"
+                className="object-cover w-full h-full"
                 data-ai-hint="signing papers"
               />
             </div>

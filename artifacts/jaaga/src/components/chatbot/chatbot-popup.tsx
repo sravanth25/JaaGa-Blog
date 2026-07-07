@@ -1,5 +1,7 @@
 
 
+'use client';
+
 import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -301,10 +303,10 @@ export function ChatbotPopup() {
             <TooltipTrigger asChild>
               <Button
                 size="icon"
-                className="rounded-full w-14 h-14 bg-primary shadow-lg"
+                className="rounded-full w-14 h-14 bg-[#143568] hover:bg-[#0f284f] text-white shadow-xl ring-4 ring-white/10 transition-transform duration-300 hover:scale-110"
                 onClick={() => setIsOpen(true)}
               >
-                <Bot className="h-7 w-7" />
+                <Bot className="h-7 w-7 text-white" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="left">
@@ -329,7 +331,7 @@ export function ChatbotPopup() {
           {/* HEADER (FIXED) */}
           <CardHeader className="shrink-0 flex flex-row items-center justify-between border-b">
              <div className='flex items-center gap-2'>
-              <Bot className="h-6 w-6 text-primary" />
+              <Bot className="h-6 w-6 text-[#143568]" />
               <CardTitle className="text-lg">JaaGa Bot</CardTitle>
             </div>
             <div className="flex items-center gap-1">
@@ -363,8 +365,8 @@ export function ChatbotPopup() {
                     )}
                   >
                     {msg.role === 'bot' && (
-                      <div className="bg-primary text-primary-foreground p-2 rounded-full shrink-0">
-                        <Bot className="h-5 w-5" />
+                      <div className="bg-[#143568] text-white p-2 rounded-full shrink-0">
+                        <Bot className="h-5 w-5 text-white" />
                       </div>
                     )}
 
@@ -373,7 +375,7 @@ export function ChatbotPopup() {
                         'p-3 rounded-lg max-w-[80%] text-sm whitespace-pre-wrap',
                         msg.role === 'bot'
                           ? 'bg-muted'
-                          : 'bg-primary text-primary-foreground'
+                          : 'bg-[#143568] text-white'
                       )}
                     >
                       {msg.text ? formatMessageText(msg.text) : <Loader2 className="w-5 h-5 animate-spin"/>}
@@ -406,14 +408,14 @@ export function ChatbotPopup() {
 
                 {isLoading && !messages.some(m => m.role === 'bot' && !m.text) && (
                   <div className="flex gap-3">
-                    <div className="bg-primary p-2 rounded-full">
+                    <div className="bg-[#143568] p-2 rounded-full">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
                     <div className="bg-muted px-4 py-3 rounded-lg">
                       <div className="flex gap-1">
-                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
-                        <span className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200" />
+                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce" />
+                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce delay-100" />
+                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce delay-200" />
                       </div>
     
                     </div>
@@ -447,14 +449,14 @@ export function ChatbotPopup() {
                 <PromptInputAction tooltip="Send">
                   <Button
                     size="icon"
-                    className="h-8 w-8 rounded-full"
+                    className="h-8 w-8 rounded-full bg-[#143568] hover:bg-[#0f284f] text-white"
                     onClick={handleSubmit}
                     disabled={!input || isLoading}
                   >
                     {isLoading ? (
-                      <Square className="h-4 w-4 fill-current" />
+                      <Square className="h-4 w-4 fill-current text-white" />
                     ) : (
-                      <ArrowUp className="h-4 w-4" />
+                      <ArrowUp className="h-4 w-4 text-white" />
                     )}
                   </Button>
                 </PromptInputAction>

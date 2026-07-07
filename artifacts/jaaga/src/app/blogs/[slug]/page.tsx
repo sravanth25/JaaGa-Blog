@@ -1,11 +1,14 @@
 
 import React from 'react';
-
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Script from 'next/script';
+import { getPosts } from '@/lib/server/data';
 
 import {categories, services} from '@/lib/data';
 
 import {Badge} from '@/components/ui/badge';
-import { Link } from 'wouter';
+import Link from 'next/link';
 import {PostSidebar} from '@/components/blog/post-sidebar';
 import {Breadcrumb} from '@/components/common/breadcrumb';
 import {Separator} from '@/components/ui/separator';
@@ -18,8 +21,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 ;
-
-export const dynamic = 'force-dynamic';
 
 type Props = {
   params: {slug: string};

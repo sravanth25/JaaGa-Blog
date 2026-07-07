@@ -1,9 +1,7 @@
 
 import BlogListClient from "@/components/blog/blog-list-client";
-import { fetchBlogs } from "@/lib/api";
+import { getPosts } from "@/lib/server/data";
 import type { Metadata } from 'next';
-
-export const dynamic = 'force-dynamic';
 
 const pageTitle = 'Property Documents Guide: Download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch | JaaGa';
 const pageDescription = 'Learn how to download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch, and more. Your guide to property records in Tamil Nadu, Telangana, and across India.';
@@ -120,7 +118,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListPage() {
-  const posts = await fetchBlogs();
+  const posts = getPosts();
   const sortedPosts = [...posts].sort((a, b) => (b.id || 0) - (a.id || 0));
   
   return (

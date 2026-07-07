@@ -1,8 +1,10 @@
 
 
 
+'use client';
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -18,7 +20,7 @@ const AUTH_KEY = 'jaaga_auth_token';
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [, navigate] = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
     try {
@@ -45,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     localStorage.removeItem(AUTH_KEY);
     setIsAuthenticated(false);
-    navigate("/login");
+    router.push("/login");
   };
 
   return (

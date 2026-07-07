@@ -1,6 +1,8 @@
 
 
 
+'use client';
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,7 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/context/auth-context';
-import { useLocation } from 'wouter';
+import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -29,7 +31,7 @@ const formSchema = z.object({
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
-  const [, navigate] = useLocation();
+  const router = useRouter();
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,7 +53,7 @@ export default function LoginPage() {
         title: 'Login Successful',
         description: "You're being redirected to the editor.",
       });
-      navigate("/blogs/editor");
+      router.push("/blogs/editor");
     } else {
       toast({
         variant: 'destructive',

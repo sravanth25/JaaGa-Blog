@@ -1,5 +1,5 @@
 import {Button} from '@/components/ui/button';
-import { Link } from 'wouter';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -23,11 +23,10 @@ export default function AboutPage() {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div className="relative h-80 overflow-hidden rounded-xl shadow-lg md:h-96">
-            <Image
+            <img
               src="https://picsum.photos/800/600"
               alt="Our team at a planning session"
-              fill
-              className="object-cover"
+              className="object-cover w-full h-full"
               data-ai-hint="team meeting"
             />
           </div>
