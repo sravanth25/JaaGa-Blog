@@ -15,6 +15,7 @@ import {Breadcrumb} from '@/components/common/breadcrumb';
 import {Separator} from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { BlogPostCard } from '@/components/blog/blog-post-card';
+import { AdsteraAd } from '@/components/blog/adstera-ad';
 import {
   Accordion,
   AccordionContent,
@@ -821,14 +822,7 @@ export default async function BlogPostPage({params}: Props) {
           </div>
 
           {/* Adstera Ad Section */}
-          <div className="my-8 flex justify-center w-full">
-            <div id="container-9ad02d1769b89f0b2108560d87d5e33f"></div>
-            <Script 
-              src="https://pl28784533.effectivegatecpm.com/9ad02d1769b89f0b2108560d87d5e33f/invoke.js"
-              strategy="afterInteractive"
-              data-cfasync="false"
-            />
-          </div>
+          <AdsteraAd />
 
           <Separator className="my-12" />
 

@@ -155,6 +155,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', function(e) {
+                if (e && (e.message === 'Script error.' || (e.error && e.error.message && e.error.message.includes('Script error')))) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                  return true;
+                }
+              }, true);
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e && e.reason && e.reason.message && e.reason.message.includes('Script error')) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                  return true;
+                }
+              }, true);
+            `
+          }}
+        />
         <meta name="google-site-verification" content="DXQ8v30NfhIWCK_BWdbspTx-6Jpi1TjsWvFbTytJhBI" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
