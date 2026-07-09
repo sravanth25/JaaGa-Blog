@@ -30,6 +30,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const posts = getPosts();
+  console.log("generateStaticParams - found posts:", posts.length, "slugs:", posts.map(p => p.slug));
   return posts.map(post => ({
     slug: post.slug,
   }));

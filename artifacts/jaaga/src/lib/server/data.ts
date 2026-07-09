@@ -33,7 +33,9 @@ export function getPosts(): Post[] {
     return [];
   }
 
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const posts = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  console.log("getPosts loaded from:", filePath, "Total posts:", posts.length);
+  return posts;
 }
 
 export function savePosts(posts: Post[]) {

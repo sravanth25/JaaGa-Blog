@@ -286,5 +286,12 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Prove Legal Ownership of a Property: Complete Guide for India",
     keywords: "prove property ownership India, property ownership documents India, legal title property",
     schemaType: "Article"
+  },
+  "property-title-search-india-find-locate-property-ownership": {
+    title: "Property Title Search in India: How Buyers Can Find and Locate Property Ownership Before Buying",
+    description: "Learn how to find and locate property ownership, verify the title chain, check the right records, and spot red flags before you buy property in India.",
+    h1: "Property Title Search in India: How Buyers Can Find and Locate Property Ownership Before Buying",
+    keywords: "property title search, find and locate property, find property by name, locate property ownership, property ownership search, property record search, title verification, land records lookup, check property before buying",
+    schemaType: "BlogPosting"
   }
 };
