@@ -728,6 +728,21 @@ export default async function BlogPostPage({params}: Props) {
 
   const faqEntities = faqSchema?.mainEntity || [];
 
+  // Strip duplicate headers (h1 or similar h2)
+  let cleanedContent = post.content.replace(/<h1[^>]*>([\s\S]*?)<\/h1>/gi, "");
+  const h2Match = cleanedContent.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+  if (h2Match) {
+    const h2Text = h2Match[1].replace(/<[^>]*>/g, "").trim().toLowerCase();
+    const cleanTitle = h1Text.toLowerCase().trim();
+    if (
+      cleanTitle.includes(h2Text) ||
+      h2Text.includes(cleanTitle) ||
+      cleanTitle.replace(/[^a-z0-9]/g, "").slice(0, 30) === h2Text.replace(/[^a-z0-9]/g, "").slice(0, 30)
+    ) {
+      cleanedContent = cleanedContent.replace(/<h2[^>]*>[\s\S]*?<\/h2>/i, "");
+    }
+  }
+
   return (
     <div className="container mx-auto px-4 py-8 md:py-16">
       <script
@@ -772,7 +787,7 @@ export default async function BlogPostPage({params}: Props) {
 
           <div
               className="prose prose-lg max-w-none text-foreground prose-h2:font-headline prose-h2:font-bold prose-h3:font-headline prose-h3:font-bold prose-a:text-primary hover:prose-a:underline prose-headings:font-headline prose-headings:font-bold prose-p:text-foreground prose-strong:text-foreground"
-              dangerouslySetInnerHTML={{ __html: post.content.replace(/<h1[^>]*>.*?<\/h1>/i, "") }}
+              dangerouslySetInnerHTML={{ __html: cleanedContent }}
             />
           
           {faqEntities.length > 0 && (

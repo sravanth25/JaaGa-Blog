@@ -44,6 +44,21 @@ if (fs.existsSync(staticPath)) {
   app.use(express.static(staticPath));
   
   app.get("*", (req, res) => {
+    let cleanPath = req.path;
+    if (cleanPath.endsWith("/") && cleanPath.length > 1) {
+      cleanPath = cleanPath.slice(0, -1);
+    }
+
+    const htmlFilePath = path.join(staticPath, cleanPath + ".html");
+    if (fs.existsSync(htmlFilePath) && fs.statSync(htmlFilePath).isFile()) {
+      return res.sendFile(htmlFilePath);
+    }
+
+    const indexFilePath = path.join(staticPath, cleanPath, "index.html");
+    if (fs.existsSync(indexFilePath) && fs.statSync(indexFilePath).isFile()) {
+      return res.sendFile(indexFilePath);
+    }
+
     res.sendFile(path.join(staticPath, "index.html"));
   });
 }

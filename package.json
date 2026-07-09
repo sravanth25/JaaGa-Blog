@@ -9,7 +9,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node artifacts/api-server/build.mjs && npm run build --workspace=@workspace/jaaga",
+    "build": "node artifacts/api-server/build.mjs && NODE_ENV=production npm run build --workspace=@workspace/jaaga",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npx tsc -b && npm run typecheck",
     "start": "node server.ts",
