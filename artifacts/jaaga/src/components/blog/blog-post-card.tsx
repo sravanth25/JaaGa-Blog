@@ -7,6 +7,7 @@ import type {Post} from '@/lib/types';
 import {Badge} from '@/components/ui/badge';
 import {Card, CardContent, CardFooter, CardHeader} from '@/components/ui/card';
 import {categories} from '@/lib/data';
+import {getOptimizedImageUrl} from '@/lib/utils';
 
 type BlogPostCardProps = {
   post: Post;
@@ -21,7 +22,7 @@ export function BlogPostCard({post}: BlogPostCardProps) {
         <Link href={`/blogs/${post.slug}`} className="block" aria-label={`Read more about ${post.title}`}>
           <div className="relative aspect-video overflow-hidden">
             <img
-              src={post.featuredImage}
+              src={getOptimizedImageUrl(post.featuredImage, 600)}
               alt={post.title}
               className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
             />

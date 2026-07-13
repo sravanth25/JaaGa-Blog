@@ -11,6 +11,7 @@ import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { Badge } from "@/components/ui/badge";
 import type { Post } from "@/lib/types";
 import { FAQSection } from "@/components/ui/faqsection";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 function Hero() {
   return (
@@ -51,7 +52,7 @@ function Hero() {
           <div className="grid grid-cols-2 gap-4">
             <div className="relative aspect-square rounded-md overflow-hidden">
               <img
-                src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412661/realtor-making-deal-with-customer-office_1_1_f3wp59.jpg"
+                src={getOptimizedImageUrl("https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412661/realtor-making-deal-with-customer-office_1_1_f3wp59.jpg", 500)}
                 alt="Property document"
                 className="object-cover w-full h-full"
                 data-ai-hint="document analysis"
@@ -59,7 +60,7 @@ function Hero() {
             </div>
             <div className="relative row-span-2 rounded-md overflow-hidden">
               <img
-                src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412451/amazing-aerial-shot-singapore-cityscape-with-lots-skyscrapers_1_mj05sc.jpg"
+                src={getOptimizedImageUrl("https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412451/amazing-aerial-shot-singapore-cityscape-with-lots-skyscrapers_1_mj05sc.jpg", 1000)}
                 alt="Modern architecture"
                 className="object-cover w-full h-full"
                 data-ai-hint="modern architecture"
@@ -67,7 +68,7 @@ function Hero() {
             </div>
             <div className="relative aspect-square rounded-md overflow-hidden">
               <img
-                src="https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412732/closeup-shot-businessman-signing-some-official-papers_1_ngomux.jpg"
+                src={getOptimizedImageUrl("https://res.cloudinary.com/dxsj2kcwu/image/upload/v1757412732/closeup-shot-businessman-signing-some-official-papers_1_ngomux.jpg", 500)}
                 alt="Digital land survey"
                 className="object-cover w-full h-full"
                 data-ai-hint="signing papers"
