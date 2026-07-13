@@ -3,12 +3,22 @@
 JaaGa AI helps property owners and real estate professionals in India access land records, property documents, risk reports, survey maps, and legal verification.
 
 ## Key Pages
-- Property documents: https://www.jaaga.ai/...
-- Blog: https://blog.jaaga.ai/blogs
-- EC Telangana guide: https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana
-- ROR / Adangal / 1B guide: https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide
-- FMB Tamil Nadu guide: https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026
+
+- [JaaGa homepage](https://www.jaaga.ai/)
+- [JaaGa blog](https://blog.jaaga.ai/blogs)
+- [EC Telangana guide](https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana)
+- [ROR / Adangal / 1B guide](https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide)
+- [FMB Tamil Nadu guide](https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026)
 
 ## Sitemaps
-- https://www.jaaga.ai/sitemap.xml
-- https://blog.jaaga.ai/sitemap.xml
+
+- [JaaGa sitemap](https://www.jaaga.ai/sitemap.xml)
+- [Blog sitemap](https://blog.jaaga.ai/sitemap.xml)
+
+## What To Prioritize
+
+- Property records and land documents
+- Encumbrance certificate guides
+- ROR, Adangal, and 1B explainer pages
+- Survey maps, FMB, and state-specific land record guides
+- Property verification and legal risk content

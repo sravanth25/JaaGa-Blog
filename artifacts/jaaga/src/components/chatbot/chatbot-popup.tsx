@@ -305,6 +305,7 @@ export function ChatbotPopup() {
                 size="icon"
                 className="rounded-full w-14 h-14 bg-[#143568] hover:bg-[#0f284f] text-white shadow-xl ring-4 ring-white/10 transition-transform duration-300 hover:scale-110"
                 onClick={() => setIsOpen(true)}
+                aria-label="Open JaaGa Chatbot"
               >
                 <Bot className="h-7 w-7 text-white" />
               </Button>
@@ -337,7 +338,7 @@ export function ChatbotPopup() {
             <div className="flex items-center gap-1">
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
+                        <Button variant="ghost" size="icon" aria-label="Change language">
                             <Languages className="h-5 w-5" />
                         </Button>
                     </DropdownMenuTrigger>
@@ -346,7 +347,7 @@ export function ChatbotPopup() {
                         <DropdownMenuItem onSelect={() => setSpeechLanguage('te')} className={cn(speechLanguage === 'te' && 'bg-accent')}>Telugu</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} aria-label="Close Chatbot">
                   <X className="h-5 w-5" />
                 </Button>
             </div>
@@ -390,6 +391,7 @@ export function ChatbotPopup() {
                               className="h-7 w-7 text-muted-foreground hover:text-primary rounded-full hover:bg-zinc-200"
                               onClick={() => handlePlayAudio(msg.text, index)}
                               title={speechLanguage === 'te' ? "వినండి" : "Listen"}
+                              aria-label={speechLanguage === 'te' ? "వినండి" : "Listen"}
                             >
                               {activeAudio.index === index && activeAudio.isPlaying ? <Pause className="h-4 w-4 text-primary animate-pulse" /> : <Play className="h-4 w-4" />}
                             </Button>
@@ -442,6 +444,7 @@ export function ChatbotPopup() {
                     className="h-8 w-8 rounded-full"
                     onClick={handleVoiceInput}
                     disabled={isLoading}
+                    aria-label={isListening ? "Stop voice input" : "Start voice input"}
                   >
                     <Mic className={`h-4 w-4 ${isListening ? 'text-red-500' : ''}`} />
                   </Button>
@@ -452,6 +455,7 @@ export function ChatbotPopup() {
                     className="h-8 w-8 rounded-full bg-[#143568] hover:bg-[#0f284f] text-white"
                     onClick={handleSubmit}
                     disabled={!input || isLoading}
+                    aria-label={isLoading ? "Stop generating" : "Send message"}
                   >
                     {isLoading ? (
                       <Square className="h-4 w-4 fill-current text-white" />
