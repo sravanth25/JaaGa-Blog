@@ -39,7 +39,14 @@ app.use("/api", router);
 import path from "node:path";
 import fs from "node:fs";
 
-const staticPath = path.resolve(process.cwd(), "artifacts/jaaga/dist/public");
+let staticPath = path.resolve(process.cwd(), "artifacts/jaaga/dist/public");
+if (!fs.existsSync(staticPath)) {
+  const tryPath = path.resolve(process.cwd(), "../../artifacts/jaaga/dist/public");
+  if (fs.existsSync(tryPath)) {
+    staticPath = tryPath;
+  }
+}
+
 if (fs.existsSync(staticPath)) {
   app.use(express.static(staticPath));
   
@@ -59,7 +66,11 @@ if (fs.existsSync(staticPath)) {
       return res.sendFile(indexFilePath);
     }
 
-    res.sendFile(path.join(staticPath, "index.html"));
+    const error404Path = path.join(staticPath, "404.html");
+    if (fs.existsSync(error404Path)) {
+      return res.status(404).sendFile(error404Path);
+    }
+    res.status(404).send("Not Found");
   });
 }
 
