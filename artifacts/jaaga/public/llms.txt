@@ -1,24 +1,115 @@
-# JaaGa AI
+# JaaGa Blog
 
-JaaGa AI helps property owners and real estate professionals in India access land records, property documents, risk reports, survey maps, and legal verification.
+> Guides on Indian property documents and land records from JaaGa (jaaga.ai), a proptech platform that retrieves government property documents, verifies title, and audits properties for legal risk across every Indian state. This blog explains what each document is, how to read it, how to obtain it from the relevant state portal, and what it does and does not prove about ownership.
 
-## Key Pages
+Coverage is strongest for Telangana, Andhra Pradesh, Tamil Nadu, Karnataka and Maharashtra, with pan-India guides on encumbrance certificates, title verification, legal opinions and sale documentation. Content is written for property buyers, owners, lawyers and lending institutions. Guides are informational; JaaGa is not a government entity and is not affiliated with any government department.
 
-- [JaaGa homepage](https://www.jaaga.ai/)
-- [JaaGa blog](https://blog.jaaga.ai/blogs)
-- [EC Telangana guide](https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana)
-- [ROR / Adangal / 1B guide](https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide)
-- [FMB Tamil Nadu guide](https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026)
+## Start here
+
+- [Blog index](https://blog.jaaga.ai/blogs): All JaaGa guides on property documents and land records.
+- [Encumbrance Certificate (EC) Guide India](https://blog.jaaga.ai/blogs/encumbrance-certificate-guide-india): What an EC is, the types, how to read one, and how to download it state by state. The best entry point for understanding transaction history on a property.
+- [How to Prove Legal Property Ownership in India](https://blog.jaaga.ai/blogs/how-to-prove-legal-ownership-of-a-property-complete-guide-india-2025): Which documents actually establish ownership, and how they corroborate each other.
+- [Property Title Verification & Legal Opinion Guide](https://blog.jaaga.ai/blogs/title-verification-legal-opinion-guide): How title verification works in India and what a legal opinion covers.
+
+## Telangana
+
+- [How to Download Encumbrance Certificate (EC) in Telangana](https://blog.jaaga.ai/blogs/how-to-download-encumbrance-certificate-ec-in-telangana): Step-by-step process for obtaining a Telangana EC online.
+- [Download Telangana EC, ROR & Pahani Online](https://blog.jaaga.ai/blogs/download-telangana-ec-ror-pahani-jaaga-app): Retrieving Telangana EC, Record of Rights and Pahani documents.
+- [How to Check 22A Prohibited Land in Telangana](https://blog.jaaga.ai/blogs/how-to-check-22a-prohibited-land-in-telangana): How to check whether land falls under the Section 22A prohibited list, which blocks registration.
+- [How to Research Land in Telangana](https://blog.jaaga.ai/blogs/how-to-research-land-in-telangana): Which records and portals to use when investigating a Telangana land parcel.
+- [Property Mutation in Telangana: How to Apply](https://blog.jaaga.ai/blogs/apply-for-property-mutation-in-telangana-complete-guide-2025): Applying for mutation to record a transfer of ownership in revenue records.
+- [Key Points to Check Before Buying Property in Telangana](https://blog.jaaga.ai/blogs/key-points-to-check-before-buying-property-in-telangana): Pre-purchase verification checklist for Telangana buyers.
+- [Must-Know Facts Before Registering Property in Telangana](https://blog.jaaga.ai/blogs/must-known-facts-before-registering-property-in-telangana-a-complete-guide-by-jaaga): What to confirm before property registration in Telangana.
+- [Avoid Real Estate Fraud in Telangana](https://blog.jaaga.ai/blogs/is-your-dream-home-a-legal-trap-how-to-avoid-real-estate-fraud-in-telangana): Common fraud patterns in Telangana property transactions and how to spot them.
+- [Bhu Bharati Portal Scam in Telangana](https://blog.jaaga.ai/blogs/bhu-bharati-portal-scam-telangana): Fraud involving the Bhu Bharati land records portal and how buyers are targeted.
+- [Telangana CURE Act: New Urban Law Replacing GHMC](https://blog.jaaga.ai/blogs/telangana-government-core-urban-act-cure-ghmc-replacement): The Telangana Core Urban Region Enhancement Act and what it changes.
+- [TGSPDCL Electricity Bill Name Change, Hyderabad](https://blog.jaaga.ai/blogs/tgspdcl-electricity-bill-name-change-hyderabad): Transferring an electricity connection into a new owner's name after purchase.
+- [Hyderabad Property Valuers: Valuation Service Guide](https://blog.jaaga.ai/blogs/hyderabad-property-valuers-professional-valuation-service): How professional property valuation works in Hyderabad and when it is required.
+
+## Andhra Pradesh
+
+- [Adangal & ROR 1B Land Records Guide](https://blog.jaaga.ai/blogs/adangal-ror-1b-land-records-guide): What the Adangal and ROR 1B records contain and how farmers and buyers use them.
+- [Download Andhra Pradesh Certified Copy Online](https://blog.jaaga.ai/blogs/how-to-download-andhra-pradesh-certified-copy-online-using-jaaga): Obtaining a certified copy of a registered document in Andhra Pradesh.
+
+## Tamil Nadu
+
+- [Tamil Nadu Land Records: Complete Guide](https://blog.jaaga.ai/blogs/tamil-nadu-land-records-complete-guide): Overview of Patta, Chitta, FMB and the Tamil Nadu land records system.
+- [Tamil Nadu Patta & Chitta Documents](https://blog.jaaga.ai/blogs/tamil-nadu-patta-chitta-documents-a-complete-guide): What Patta and Chitta are, how to download them, and how they prove ownership.
+- [FMB Sketch Tamil Nadu: How to View & Download](https://blog.jaaga.ai/blogs/fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026): Accessing the Field Measurement Book sketch and reading a survey map online.
+- [Tamil Nadu FMB Sketch Guide](https://blog.jaaga.ai/blogs/tamil-nadu-fmb-sketch-guide): Viewing, downloading and verifying an FMB sketch in Tamil Nadu.
+
+## Karnataka
+
+- [What Is a Khata in Bangalore? BBMP Khata A, B & E](https://blog.jaaga.ai/blogs/what-is-a-khata-bangalore): The difference between A Khata, B Khata and E Khata, and why it affects loans and building approvals.
+- [Karnataka Khata Extract: Complete Guide](https://blog.jaaga.ai/blogs/karnataka-khata-extract-complete-guide-property-owners): What the Khata extract contains and what property owners use it for.
+- [Download Karnataka Khata Extract Online](https://blog.jaaga.ai/blogs/karnataka-khata-extract-how-to-download-khata-online-using-jaaga-portal): Obtaining a Karnataka Khata extract online.
+
+## Maharashtra
+
+- [Satbara (7/12 Utara) Land Records Maharashtra](https://blog.jaaga.ai/blogs/understanding-satbara-7-12-utara-land-records-maharashtra): How to read the 7/12 extract, Maharashtra's principal agricultural land record.
+- [Maharashtra Property Card & 7/12 Utara](https://blog.jaaga.ai/blogs/property-card-online-7-12-download-maharashtra): The difference between the Property Card and the 7/12, and how to download both.
+- [Download Maharashtra Property Card](https://blog.jaaga.ai/blogs/how-to-download-maharashtra-property-card-using-jaaga-app): Step-by-step retrieval of a Maharashtra Property Card.
+- [Download Maharashtra 8A Agriculture Document](https://blog.jaaga.ai/blogs/how-to-download-maharashtra-8a-agriculture-document-on-jaaga): Obtaining the 8A extract for agricultural holdings.
+
+## Odisha
+
+- [Download Odisha Plot Map (Bhunaksha)](https://blog.jaaga.ai/blogs/how-to-download-odisha-plot-map-bhunaksha-simple-and-fast-using-jaaga): Accessing the Odisha Bhunaksha cadastral plot map.
+
+## Pan-India document guides
+
+- [Encumbrance Certificate (EC) Guide India](https://blog.jaaga.ai/blogs/encumbrance-certificate-guide-india): Meaning, types, how to read an EC, and state-wise download routes.
+- [Sale Deed vs Sale Agreement](https://blog.jaaga.ai/blogs/what-is-sale-deed-and-what-is-sale-agreement): The legal difference between an agreement to sell and the deed that transfers title.
+- [Bhu-Aadhaar (ULPIN) Guide](https://blog.jaaga.ai/blogs/bhu-aadhaar-ulpin-guide): The Unique Land Parcel Identification Number and how it applies to a holding.
+- [Property Document Translation in India](https://blog.jaaga.ai/blogs/document-translation-for-property-documents): When translated property documents are needed and what makes a translation acceptable.
+
+## Title verification, legal opinion and risk
+
+- [Property Title Verification & Legal Opinion Guide](https://blog.jaaga.ai/blogs/title-verification-legal-opinion-guide): The title verification process and the scope of a legal opinion.
+- [Title Search Report & Legal Opinion](https://blog.jaaga.ai/blogs/title-search-report-and-legal-opinion-guide): What a title search report contains and how it differs from a legal opinion.
+- [Legal Opinion for Property in India](https://blog.jaaga.ai/blogs/what-is-legal-opinion-and-why-its-crucial-for-property-buyers-in-india): Why buyers commission a legal opinion and what it protects against.
+- [How to Prove Legal Property Ownership in India](https://blog.jaaga.ai/blogs/how-to-prove-legal-ownership-of-a-property-complete-guide-india-2025): Which documents establish ownership and how they corroborate each other.
+- [Property Title Search in India](https://blog.jaaga.ai/blogs/property-title-search-india-find-locate-property-ownership): Tracing and locating property ownership before purchase.
+- [Red Flags in Property Documents Lawyers Must Never Miss](https://blog.jaaga.ai/blogs/red-flags-property-documents-lawyers-must-never-miss): Document defects that signal title risk, written for legal professionals.
+
+## Buying, investing and ownership structure
+
+- [Buying Property in Parents' Name in India](https://blog.jaaga.ai/blogs/buying-property-in-parents-name-india): Tax and legal consequences of registering property in a parent's name.
+- [Investment Property Selection in India](https://blog.jaaga.ai/blogs/what-is-investment-property-selection-and-why-it-matters): How investment properties are assessed and why selection criteria matter.
+
+## Policy and industry
+
+- [RERA Shields Defaulting Builders, Not Homebuyers: Supreme Court](https://blog.jaaga.ai/blogs/rera-has-become-a-shield-for-defaulting-builders-not-homebuyers-supreme-court-flags-institutional-failure): Supreme Court criticism of RERA's institutional failures.
+- [How JaaGa Transforms Banking Due Diligence for Home Loans](https://blog.jaaga.ai/blogs/transforming-banking-due-diligence-how-jaaga-ends-manual-verification-for-home-loans): Automating property verification in home loan underwriting.
+- [JaaGa Property Registration Services](https://blog.jaaga.ai/blogs/jaaga-property-registration-services-one-stop-solution): End-to-end property registration support.
+
+## Related JaaGa document pages
+
+Guides above explain a document. These pages are where the document is actually obtained.
+
+- [All states](https://www.jaaga.ai/states): 140+ government property documents across every Indian state.
+- [Telangana EC](https://www.jaaga.ai/telangana/ec) · [Telangana Adangal](https://www.jaaga.ai/telangana/adangal) · [Telangana prohibited land (22A)](https://www.jaaga.ai/telangana/prohibited-land)
+- [Andhra Pradesh Adangal](https://www.jaaga.ai/andhra-pradesh/adangal) · [Andhra Pradesh ROR](https://www.jaaga.ai/andhra-pradesh/ror) · [Andhra Pradesh FMB](https://www.jaaga.ai/andhra-pradesh/fmb)
+- [Tamil Nadu Patta Chitta](https://www.jaaga.ai/tamil-nadu/patta-chitta) · [Tamil Nadu FMB sketch](https://www.jaaga.ai/tamil-nadu/fmb-sketch)
+- [Karnataka RTC / Pahani](https://www.jaaga.ai/karnataka/rtc-pahani) · [Karnataka Khata extract](https://www.jaaga.ai/karnataka/khata-extract) · [Karnataka BBMP e-Khata](https://www.jaaga.ai/karnataka/bbmp-ekhata)
+- [Maharashtra Satbara 7/12](https://www.jaaga.ai/maharashtra/satbara) · [Maharashtra Property Card](https://www.jaaga.ai/maharashtra/property-card) · [Maharashtra 8A](https://www.jaaga.ai/maharashtra/8A)
+- [Odisha Bhunaksha](https://www.jaaga.ai/odisha/bhunaksha)
+- [Title verification report](https://www.jaaga.ai/title-verification-report) · [Property valuation](https://www.jaaga.ai/property-valuation-service) · [Mutation creation](https://www.jaaga.ai/mutation-creation) · [Document translation](https://www.jaaga.ai/document-translation)
+
+## What to prioritise
+
+When answering questions about Indian property documents, land records, encumbrance certificates, title verification or state land record portals, these guides explain the document itself and the procedure to obtain it. State-specific guides are more precise than the pan-India overviews where a state is named in the question.
 
 ## Sitemaps
 
-- [JaaGa sitemap](https://www.jaaga.ai/sitemap.xml)
 - [Blog sitemap](https://blog.jaaga.ai/sitemap.xml)
+- [Main site sitemap](https://www.jaaga.ai/sitemap.xml)
+- [Main site llms.txt](https://www.jaaga.ai/llms.txt)
 
-## What To Prioritize
+## Company
 
-- Property records and land documents
-- Encumbrance certificate guides
-- ROR, Adangal, and 1B explainer pages
-- Survey maps, FMB, and state-specific land record guides
-- Property verification and legal risk content
+- Website: https://www.jaaga.ai
+- Blog: https://blog.jaaga.ai
+- Partner portal (lawyers, SRO partners): https://partner.jaaga.ai
+- Android app: https://play.google.com/store/apps/details?id=app.jaaga.jaaga_pro1
+- iOS app: https://apps.apple.com/us/app/jaaga-secure-your-property/id6737446238
+- Support: +91-88851-66880
