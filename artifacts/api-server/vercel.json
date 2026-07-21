@@ -5,6 +5,38 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blogs/how-to-download-certified-encumbrance-certificate-ec-telangana-guide",
+      "destination": "/blogs/how-to-download-encumbrance-certificate-ec-in-telangana",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/how-to-download-mutation-certificate-in-telangana-jaaga",
+      "destination": "/blogs/apply-for-property-mutation-in-telangana-complete-guide-2025",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/how-to-download-fmb-village-maps-andhra-pradesh-online",
+      "destination": "/blogs/how-to-download-andhra-pradesh-certified-copy-online-using-jaaga",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/how-to-download-telangana-pattadar-passbook-pahani-online",
+      "destination": "/blogs/download-telangana-ec-ror-pahani-jaaga-app",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/ts-electricity-bill-name-change-tgspdcl",
+      "destination": "/blogs/tgspdcl-electricity-bill-name-change-hyderabad",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/retrieve-property-documents-online",
+      "destination": "/blogs/property-title-search-india-find-locate-property-ownership",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/index.js" },
     { "source": "/api/(.*)", "destination": "/api/index.js" }

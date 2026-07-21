@@ -814,7 +814,7 @@ export default async function BlogPostPage({params}: Props) {
           )}
 
           <div className="mt-8">
-             <Button asChild>
+             <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
                 <Link href="https://www.jaaga.ai/" target="_blank" rel="noopener noreferrer">
                   Visit Our Website
                 </Link>

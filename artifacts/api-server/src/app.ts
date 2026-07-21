@@ -35,6 +35,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(sitemapRouter);
 app.use("/api", router);
 
+// Define 301 redirects for renamed blog posts to match vercel.json
+const redirectsMap: Record<string, string> = {
+  "/blogs/how-to-download-certified-encumbrance-certificate-ec-telangana-guide": "/blogs/how-to-download-encumbrance-certificate-ec-in-telangana",
+  "/blogs/how-to-download-mutation-certificate-in-telangana-jaaga": "/blogs/apply-for-property-mutation-in-telangana-complete-guide-2025",
+  "/blogs/how-to-download-fmb-village-maps-andhra-pradesh-online": "/blogs/how-to-download-andhra-pradesh-certified-copy-online-using-jaaga",
+  "/blogs/how-to-download-telangana-pattadar-passbook-pahani-online": "/blogs/download-telangana-ec-ror-pahani-jaaga-app",
+  "/blogs/ts-electricity-bill-name-change-tgspdcl": "/blogs/tgspdcl-electricity-bill-name-change-hyderabad",
+  "/blogs/retrieve-property-documents-online": "/blogs/property-title-search-india-find-locate-property-ownership",
+};
+
+app.use((req, res, next) => {
+  let cleanPath = req.path;
+  if (cleanPath.endsWith("/") && cleanPath.length > 1) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+  const destination = redirectsMap[cleanPath];
+  if (destination) {
+    return res.redirect(301, destination);
+  }
+  next();
+});
+
 // Serve static frontend files if built
 import path from "node:path";
 import fs from "node:fs";
