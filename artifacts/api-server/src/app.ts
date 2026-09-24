@@ -72,7 +72,7 @@ if (!fs.existsSync(staticPath)) {
 if (fs.existsSync(staticPath)) {
   app.use(express.static(staticPath));
   
-  app.get("*", (req, res) => {
+  app.get(/.*/, (req, res) => {
     let cleanPath = req.path;
     if (cleanPath.endsWith("/") && cleanPath.length > 1) {
       cleanPath = cleanPath.slice(0, -1);

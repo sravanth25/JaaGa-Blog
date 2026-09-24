@@ -4,7 +4,6 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   PromptInput,
   PromptInputAction,
@@ -106,9 +105,10 @@ export function ChatbotPopup() {
         }
 
         recognitionRef.current.onerror = (event: any) => {
-          console.error('Speech recognition error:', event.error)
+          const errCode = event && typeof event === 'object' ? (event.error || event.type || 'unknown') : String(event);
+          console.warn('Speech recognition status:', errCode)
           setIsListening(false)
-          if (event.error === 'not-allowed') {
+          if (errCode === 'not-allowed') {
             setMessages(prev => [
               ...prev,
               {
@@ -116,14 +116,14 @@ export function ChatbotPopup() {
                 text: '⚠️ **Microphone access blocked.** Please grant microphone permission in your browser settings (usually by clicking the lock or microphone settings icon on the left of the URL bar) and try again.'
               }
             ])
-          } else if (event.error === 'no-speech') {
+          } else if (errCode === 'no-speech') {
             // No speech detected, ignore or reset silently
           } else {
             setMessages(prev => [
               ...prev,
               {
                 role: 'bot',
-                text: `⚠️ **Voice input issue:** ${event.error}. Please check your hardware or try again.`
+                text: `⚠️ **Voice input issue:** ${errCode}. Please check your hardware or try again.`
               }
             ])
           }
@@ -266,7 +266,10 @@ export function ChatbotPopup() {
     };
 
     utterance.onerror = (e) => {
-      console.error('Speech synthesis error:', e);
+      const errCode = e && typeof e === 'object' ? ((e as any).error || e.type || 'error') : String(e);
+      if (errCode !== 'canceled' && errCode !== 'interrupted') {
+        console.warn('Speech synthesis notice:', errCode);
+      }
       setActiveAudio({ index: null, audio: null, isPlaying: false });
     };
 
@@ -303,7 +306,7 @@ export function ChatbotPopup() {
             <TooltipTrigger asChild>
               <Button
                 size="icon"
-                className="rounded-full w-14 h-14 bg-[#143568] hover:bg-[#0f284f] text-white shadow-xl ring-4 ring-white/10 transition-transform duration-300 hover:scale-110"
+                className="rounded-full w-14 h-14 bg-[#153568] hover:bg-[#0f284f] text-white shadow-xl ring-4 ring-white/10 transition-transform duration-300 hover:scale-110"
                 onClick={() => setIsOpen(true)}
                 aria-label="Open JaaGa Chatbot"
               >
@@ -317,45 +320,68 @@ export function ChatbotPopup() {
         </TooltipProvider>
       </div>
 
+      {/* MOBILE BACKDROP */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-50 sm:hidden transition-opacity duration-300"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* CHAT CARD */}
       <div
         className={cn(
           'fixed z-50 transition-all duration-300',
           'bottom-4 right-4 sm:bottom-24 sm:right-4',
-          'w-[calc(100vw-2rem)] h-[calc(100vh-5rem)] sm:w-[380px] sm:h-[500px]',
+          'w-[calc(100vw-2rem)] h-[calc(100vh-5rem)] sm:w-[380px] sm:h-[520px]',
           isOpen
-            ? 'opacity-100 translate-y-0 scale-100'
+            ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
             : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
         )}
       >
-        <Card className="w-full h-full flex flex-col shadow-xl">
+        <div
+          className="w-full h-full flex flex-col shadow-2xl bg-white border border-gray-200 rounded-2xl overflow-hidden"
+          style={{ backgroundColor: '#ffffff', isolation: 'isolate' }}
+        >
           {/* HEADER (FIXED) */}
-          <CardHeader className="shrink-0 flex flex-row items-center justify-between border-b">
+          <div
+            className="shrink-0 flex flex-row items-center justify-between border-b border-gray-100 bg-white px-4 py-3"
+            style={{ backgroundColor: '#ffffff' }}
+          >
              <div className='flex items-center gap-2'>
-              <Bot className="h-6 w-6 text-[#143568]" />
-              <CardTitle className="text-lg">JaaGa Bot</CardTitle>
+              <div
+                className="bg-[#153568] text-white p-1.5 rounded-full shrink-0 flex items-center justify-center"
+                style={{ backgroundColor: '#153568' }}
+              >
+                <Bot className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-base font-semibold text-gray-900">JaaGa Bot</span>
             </div>
             <div className="flex items-center gap-1">
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" aria-label="Change language">
-                            <Languages className="h-5 w-5" />
+                        <Button variant="ghost" size="icon" aria-label="Change language" className="h-8 w-8 text-gray-600 hover:text-gray-900 hover:bg-gray-100">
+                            <Languages className="h-4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                        <DropdownMenuItem onSelect={() => setSpeechLanguage('en')} className={cn(speechLanguage === 'en' && 'bg-accent')}>English</DropdownMenuItem>
-                        <DropdownMenuItem onSelect={() => setSpeechLanguage('te')} className={cn(speechLanguage === 'te' && 'bg-accent')}>Telugu</DropdownMenuItem>
+                    <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg" style={{ backgroundColor: '#ffffff' }}>
+                        <DropdownMenuItem onSelect={() => setSpeechLanguage('en')} className={cn(speechLanguage === 'en' && 'bg-gray-100 font-medium')}>English</DropdownMenuItem>
+                        <DropdownMenuItem onSelect={() => setSpeechLanguage('te')} className={cn(speechLanguage === 'te' && 'bg-gray-100 font-medium')}>Telugu</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} aria-label="Close Chatbot">
-                  <X className="h-5 w-5" />
+                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} aria-label="Close Chatbot" className="h-8 w-8 text-gray-600 hover:text-gray-900 hover:bg-gray-100">
+                  <X className="h-4 w-4" />
                 </Button>
             </div>
-          </CardHeader>
+          </div>
 
           {/* MESSAGES (ONLY THIS SCROLLS) */}
-          <CardContent className="flex-1 p-0 overflow-hidden flex flex-col">
-            <ScrollArea className="flex-1 px-4" ref={scrollRef}>
+          <div
+            className="flex-1 p-0 overflow-hidden flex flex-col bg-white"
+            style={{ backgroundColor: '#ffffff' }}
+          >
+            <ScrollArea className="flex-1 px-4 bg-white" ref={scrollRef} style={{ backgroundColor: '#ffffff' }}>
               <div className="space-y-4 py-4">
                 {messages.map((msg, index) => (
                   <div
@@ -366,18 +392,26 @@ export function ChatbotPopup() {
                     )}
                   >
                     {msg.role === 'bot' && (
-                      <div className="bg-[#143568] text-white p-2 rounded-full shrink-0">
-                        <Bot className="h-5 w-5 text-white" />
+                      <div
+                        className="bg-[#153568] text-white p-2 rounded-full shrink-0 shadow-sm flex items-center justify-center"
+                        style={{ backgroundColor: '#153568' }}
+                      >
+                        <Bot className="h-4 w-4 text-white" />
                       </div>
                     )}
 
                     <div
                       className={cn(
-                        'p-3 rounded-lg max-w-[80%] text-sm whitespace-pre-wrap',
+                        'p-3 rounded-2xl max-w-[82%] text-sm whitespace-pre-wrap leading-relaxed shadow-xs',
                         msg.role === 'bot'
-                          ? 'bg-muted'
-                          : 'bg-[#143568] text-white'
+                          ? 'bg-gray-100 text-gray-900 border border-gray-200/70'
+                          : 'bg-[#153568] text-white'
                       )}
+                      style={{
+                        backgroundColor: msg.role === 'bot' ? '#f3f4f6' : '#153568',
+                        color: msg.role === 'bot' ? '#111827' : '#ffffff',
+                        borderColor: msg.role === 'bot' ? '#e5e7eb' : 'transparent',
+                      }}
                     >
                       {msg.text ? formatMessageText(msg.text) : <Loader2 className="w-5 h-5 animate-spin"/>}
                        {msg.role === 'bot' && msg.text && (
@@ -388,12 +422,12 @@ export function ChatbotPopup() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 text-muted-foreground hover:text-primary rounded-full hover:bg-zinc-200"
+                              className="h-7 w-7 text-gray-500 hover:text-[#153568] rounded-full hover:bg-gray-200"
                               onClick={() => handlePlayAudio(msg.text, index)}
                               title={speechLanguage === 'te' ? "వినండి" : "Listen"}
                               aria-label={speechLanguage === 'te' ? "వినండి" : "Listen"}
                             >
-                              {activeAudio.index === index && activeAudio.isPlaying ? <Pause className="h-4 w-4 text-primary animate-pulse" /> : <Play className="h-4 w-4" />}
+                              {activeAudio.index === index && activeAudio.isPlaying ? <Pause className="h-4 w-4 text-[#153568] animate-pulse" /> : <Play className="h-4 w-4" />}
                             </Button>
                           )}
                         </div>
@@ -401,8 +435,11 @@ export function ChatbotPopup() {
                     </div>
 
                     {msg.role === 'user' && (
-                      <div className="bg-muted p-2 rounded-full shrink-0">
-                        <User className="h-5 w-5" />
+                      <div
+                        className="bg-gray-200 text-gray-700 p-2 rounded-full shrink-0 shadow-sm flex items-center justify-center"
+                        style={{ backgroundColor: '#e5e7eb' }}
+                      >
+                        <User className="h-4 w-4" />
                       </div>
                     )}
                   </div>
@@ -410,38 +447,51 @@ export function ChatbotPopup() {
 
                 {isLoading && !messages.some(m => m.role === 'bot' && !m.text) && (
                   <div className="flex gap-3">
-                    <div className="bg-[#143568] p-2 rounded-full">
-                      <Bot className="h-5 w-5 text-white" />
+                    <div
+                      className="bg-[#153568] p-2 rounded-full shadow-sm text-white flex items-center justify-center"
+                      style={{ backgroundColor: '#153568' }}
+                    >
+                      <Bot className="h-4 w-4 text-white" />
                     </div>
-                    <div className="bg-muted px-4 py-3 rounded-lg">
-                      <div className="flex gap-1">
-                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce" />
-                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce delay-100" />
-                        <span className="w-2 h-2 bg-[#143568] rounded-full animate-bounce delay-200" />
+                    <div
+                      className="bg-gray-100 border border-gray-200/70 px-4 py-3 rounded-2xl"
+                      style={{ backgroundColor: '#f3f4f6', borderColor: '#e5e7eb' }}
+                    >
+                      <div className="flex gap-1.5">
+                        <span className="w-2 h-2 bg-[#153568] rounded-full animate-bounce" style={{ backgroundColor: '#153568' }} />
+                        <span className="w-2 h-2 bg-[#153568] rounded-full animate-bounce delay-100" style={{ backgroundColor: '#153568' }} />
+                        <span className="w-2 h-2 bg-[#153568] rounded-full animate-bounce delay-200" style={{ backgroundColor: '#153568' }} />
                       </div>
-    
                     </div>
                   </div>
                 )}
               </div>
             </ScrollArea>
-          </CardContent>
+          </div>
 
           {/* INPUT (FIXED) */}
-          <div className="shrink-0 border-t p-4">
+          <div
+            className="shrink-0 border-t border-gray-100 p-3 bg-white"
+            style={{ backgroundColor: '#ffffff' }}
+          >
             <PromptInput
               value={input}
               onValueChange={setInput}
               isLoading={isLoading}
               onSubmit={handleSubmit}
+              className="bg-gray-50/80 border border-gray-200 rounded-2xl p-2 shadow-xs focus-within:border-[#153568] focus-within:bg-white transition-colors"
+              style={{ backgroundColor: '#f9fafb' }}
             >
-              <PromptInputTextarea placeholder="Ask me anything…" />
+              <PromptInputTextarea
+                placeholder="Ask me anything…"
+                className="text-gray-900 placeholder:text-gray-400 bg-transparent"
+              />
               <PromptInputActions className="justify-end pt-2">
                  <PromptInputAction tooltip="Voice Input">
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="h-8 w-8 rounded-full"
+                    className="h-8 w-8 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                     onClick={handleVoiceInput}
                     disabled={isLoading}
                     aria-label={isListening ? "Stop voice input" : "Start voice input"}
@@ -452,7 +502,8 @@ export function ChatbotPopup() {
                 <PromptInputAction tooltip="Send">
                   <Button
                     size="icon"
-                    className="h-8 w-8 rounded-full bg-[#143568] hover:bg-[#0f284f] text-white"
+                    className="h-8 w-8 rounded-full bg-[#153568] hover:bg-[#0f284f] text-white shadow-xs"
+                    style={{ backgroundColor: '#153568' }}
                     onClick={handleSubmit}
                     disabled={!input || isLoading}
                     aria-label={isLoading ? "Stop generating" : "Send message"}
@@ -467,7 +518,7 @@ export function ChatbotPopup() {
               </PromptInputActions>
             </PromptInput>
           </div>
-        </Card>
+        </div>
       </div>
     </>
   )

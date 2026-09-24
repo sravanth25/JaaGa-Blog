@@ -44,7 +44,7 @@ export function GitHubSyncSettings() {
         setIsConfigured(false);
       }
     } catch (err) {
-      console.error("Failed to fetch Github integration config", err);
+      console.warn("Failed to fetch Github integration config", err);
     }
   };
 

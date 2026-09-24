@@ -13,7 +13,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npx tsc -b && npm run typecheck",
     "start": "node server.ts",
-    "dev": "concurrently \"PORT=8085 npm run dev --workspace=@workspace/api-server\" \"npm run dev --workspace=@workspace/jaaga\""
+    "dev": "concurrently \"npm run dev --workspace=@workspace/api-server\" \"npm run dev --workspace=@workspace/jaaga\""
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",

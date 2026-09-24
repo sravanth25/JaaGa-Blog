@@ -5,7 +5,6 @@ import {Header} from '@/components/common/header';
 import {Footer} from '@/components/common/footer';
 import {Toaster} from '@/components/ui/toaster';
 import {AuthProvider} from '@/context/auth-context';
-import { Analytics } from '@vercel/analytics/react';
 import { ChatbotPopup } from '@/components/chatbot/chatbot-popup';
 
 const pageTitle = 'JaaGa: Download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch Online';
@@ -158,20 +157,50 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.addEventListener('error', function(e) {
-                if (e && (e.message === 'Script error.' || (e.error && e.error.message && e.error.message.includes('Script error')))) {
-                  e.stopImmediatePropagation();
-                  e.preventDefault();
-                  return true;
+              (function() {
+                function shouldSuppress(e) {
+                  if (!e) return false;
+                  // Suppress generic DOM Events (which serialize to {"isTrusted":true}) from being captured as fatal errors
+                  if (typeof Event !== 'undefined' && e instanceof Event && !(typeof ErrorEvent !== 'undefined' && e instanceof ErrorEvent)) {
+                    return true;
+                  }
+                  // Suppress element-level resource load errors (scripts, images, links)
+                  if (e.target && e.target !== window && (e.target.tagName || e.srcElement)) {
+                    return true;
+                  }
+                  // Suppress cross-origin Script error
+                  if (e.message === 'Script error.' || (e.error && typeof e.error.message === 'string' && e.error.message.includes('Script error'))) {
+                    return true;
+                  }
+                  // Suppress benign ResizeObserver errors
+                  if (typeof e.message === 'string' && e.message.includes('ResizeObserver')) {
+                    return true;
+                  }
+                  // Suppress events with isTrusted but no actual error message
+                  if (e.isTrusted && !e.message && !e.error) {
+                    return true;
+                  }
+                  return false;
                 }
-              }, true);
-              window.addEventListener('unhandledrejection', function(e) {
-                if (e && e.reason && e.reason.message && e.reason.message.includes('Script error')) {
-                  e.stopImmediatePropagation();
-                  e.preventDefault();
-                  return true;
-                }
-              }, true);
+
+                window.addEventListener('error', function(e) {
+                  if (shouldSuppress(e)) {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    return true;
+                  }
+                }, true);
+
+                window.addEventListener('unhandledrejection', function(e) {
+                  if (!e) return;
+                  var r = e.reason;
+                  if (!r || (typeof Event !== 'undefined' && r instanceof Event) || (r && r.isTrusted) || (typeof r === 'string' && r.includes('Script error')) || (r && typeof r.message === 'string' && r.message.includes('Script error'))) {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    return true;
+                  }
+                }, true);
+              })();
             `
           }}
         />
@@ -201,7 +230,6 @@ export default function RootLayout({
           </div>
           <Toaster />
         </AuthProvider>
-        <Analytics />
       </body>
     </html>
   );

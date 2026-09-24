@@ -16,7 +16,8 @@ export function PostSidebar() {
   useEffect(() => {
     fetch('/api/posts')
       .then(res => res.json())
-      .then(data => setAllPosts(data as Post[]));
+      .then(data => setAllPosts(data as Post[]))
+      .catch(() => {});
   }, []);
 
   const getCategoryCount = (slug: string) => {

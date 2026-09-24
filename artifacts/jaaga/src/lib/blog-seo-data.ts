@@ -78,10 +78,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     schemaType: "HowTo"
   },
   "telangana-government-core-urban-act-cure-ghmc-replacement": {
-    title: "Telangana CURE Act: New Urban Law Replacing GHMC Explained",
-    description: "Telangana's Core Urban Act (CURE) is set to replace GHMC. What it means for property owners, buyers, and urban governance in Hyderabad.",
-    h1: "Telangana CURE Act: The New Urban Law Set to Replace GHMC",
-    keywords: "Telangana CURE Act, GHMC replacement, Telangana urban governance",
+    title: "CURE Act Full Form: The Law Replacing GHMC in Telangana",
+    description: "CURE stands for Core Urban Region. Telangana's draft CURE Act 2026 will replace the 70-year-old GHMC Act — what it changes for property owners and buyers.",
+    h1: "CURE Act Full Form: The Law Replacing GHMC in Telangana",
+    keywords: "cure full form telangana, cure full form, what is cure in ghmc",
     schemaType: "Article"
   },
   "encumbrance-certificate-guide-india": {
@@ -99,11 +99,18 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     schemaType: "HowTo"
   },
   "adangal-ror-1b-land-records-guide": {
-    title: "Adangal & ROR 1B Land Records: Complete Guide for Farmers & Buyers",
-    description: "What are Adangal and ROR 1B land records? Who needs them, how to read them, and how to download them — a complete guide for Telangana and Andhra Pradesh.",
-    h1: "Adangal and ROR 1B Land Records: Complete Guide",
-    keywords: "Adangal land record, ROR 1B Telangana, pahani adangal",
+    title: "ROR Full Form & Adangal 1B Meaning: Telangana Land Records",
+    description: "ROR full form is Record of Rights. Learn what ROR, Adangal and 1B mean in Telangana & AP land records, how to read them, and how to check them online.",
+    h1: "ROR Full Form in Land Records: Adangal, 1B and Pahani Explained",
+    keywords: "ror full form, ror full form in land records, 1b adangal, ror 1b",
     schemaType: "Article"
+  },
+  "bhoomi-rtc-pahani-karnataka-guide": {
+    title: "Bhoomi RTC & i-RTC Meaning: Download a Bank-Valid Pahani (Karnataka)",
+    description: "i-RTC is the digitally signed Bhoomi RTC (Pahani) that banks accept. See how it differs from the free copy and how to download a bank-valid i-RTC in Karnataka.",
+    h1: "Bhoomi RTC & i-RTC Meaning: Download a Bank-Valid Pahani (Karnataka)",
+    keywords: "i rtc, i-rtc, bhoomi rtc, pahani karnataka",
+    schemaType: "HowTo"
   },
   "fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026": {
     title: "FMB Sketch Tamil Nadu: How to View & Download FMB Map Online 2026",
@@ -292,6 +299,34 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     description: "Learn how to find and locate property ownership, verify the title chain, check the right records, and spot red flags before you buy property in India.",
     h1: "Property Title Search in India: How Buyers Can Find and Locate Property Ownership Before Buying",
     keywords: "property title search, find and locate property, find property by name, locate property ownership, property ownership search, property record search, title verification, land records lookup, check property before buying",
+    schemaType: "BlogPosting"
+  },
+  "telangana-stamp-duty-registration-charges-all-deed-types": {
+    title: "Stamp Duty & Registration Charges in Telangana 2026 | All Deed Types",
+    description: "Current Telangana stamp duty, transfer duty and registration fee for sale, gift, GPA, mortgage, lease, partition, will and settlement deeds. Verified against IGRS.",
+    h1: "Stamp Duty and Registration Charges in Telangana (2026): Rates for Every Deed Type",
+    keywords: "telangana stamp duty, registration charges in telangana, stamp duty telangana 2026, sale deed registration charges telangana, gift deed stamp duty telangana",
+    schemaType: "BlogPosting"
+  },
+  "telangana-market-value-check-online-2026": {
+    title: "Telangana Market Value 2026: How to Check New Land & Flat Rates",
+    description: "Telangana revised property market values from 5 June 2026. How to check the new land and apartment rates on the IGRS portal, how they are calculated, and what they mean for your stamp duty.",
+    h1: "Market Value of Property in Telangana (2026): How to Check the New Rates After the June Revision",
+    keywords: "telangana market value 2026, market value search telangana, igrs telangana market value, telangana land market value, flat market value hyderabad, telangana revised market values june 2026, stamp duty deficit challan telangana",
+    schemaType: "BlogPosting"
+  },
+  "pattadar-passbook-telangana-bhu-bharati-download-correction": {
+    title: "Pattadar Passbook Telangana: Download & Fix on Bhu Bharati",
+    description: "Download your Pattadar Passbook (ePPB) on Bhu Bharati, get a duplicate, fix errors and appeal a rejection. Step-by-step for Telangana landowners, 2026.",
+    h1: "Pattadar Passbook in Telangana (2026): How to Download, Correct or Replace It on Bhu Bharati",
+    keywords: "pattadar passbook telangana, pattadar passbook download, bhu bharati pattadar passbook, bhu bharati passbook download, duplicate pattadar passbook, pattadar passbook correction, pattadar passbook name correction, eppb download telangana, bhu bharati land details search, dharani passbook",
+    schemaType: "BlogPosting"
+  },
+  "ap-freehold-land-registration-ban-lifted-2026": {
+    title: "AP Freehold Land Registration Ban Lifted: 9 Lakh Acres",
+    description: "Andhra Pradesh has reopened registration for about 9 lakh acres of freehold land. What changed, which lands are still barred, and how to check yours.",
+    h1: "Andhra Pradesh Lifts the Freehold Land Registration Ban: What It Means for 9 Lakh Acres",
+    keywords: "ap freehold land registration, freehold lands andhra pradesh, assigned land registration ap, ap assigned lands act 1977, webland freehold status, 22a prohibited list andhra pradesh, chukkala dotted lands ap, village service inam lands, d patta land sale ap, ap land registration 2026",
     schemaType: "BlogPosting"
   }
 };

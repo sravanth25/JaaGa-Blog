@@ -51,10 +51,12 @@ type PromptInputProps = {
   onSubmit?: () => void
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
 }
 
 function PromptInput({
   className,
+  style,
   isLoading = false,
   maxHeight = 240,
   value,
@@ -85,6 +87,7 @@ function PromptInput({
             "border-input bg-background rounded-3xl border p-2 shadow-xs",
             className
           )}
+          style={style}
         >
           {children}
         </div>

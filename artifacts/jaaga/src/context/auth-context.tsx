@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setIsAuthenticated(true);
         }
     } catch (e) {
-        console.error("Could not access localStorage", e);
+        console.warn("Could not access localStorage", e);
     } finally {
         setIsLoading(false);
     }

@@ -1,4 +1,5 @@
 import { getPosts } from '@/lib/server/data';
+import { getPostDate } from '@/lib/utils';
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -7,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const postUrls = posts.map(post => ({
     url: `${blogUrl}/blogs/${post.slug}`,
-    lastModified: post.id ? new Date(post.id) : new Date(),
+    lastModified: post.id ? getPostDate(post.id, post.title, post.slug) : new Date(),
     priority: 0.9,
   }));
 
