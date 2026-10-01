@@ -7,6 +7,20 @@ export interface BlogSEO {
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
+  "ap-property-tax-receipt-download": {
+    title: "AP Property Tax: Rates, Receipt & Download Online 2026",
+    description: "What property tax is, how Andhra Pradesh calculates it, what your city charges, and how to get your AP property tax receipt as a soft copy from JaaGa.",
+    h1: "Property Tax in Andhra Pradesh: What It Is, How It's Calculated, and How to Get Your Receipt",
+    keywords: "property tax ap, ap property tax, property tax, andhra pradesh property tax, what is a property tax, cdma property tax, cdma ap property tax, property tax online, online property tax, property tax payment, municipal property tax, municipal tax, house tax, house property tax, property tax receipt, property tax download, search property tax, gvmc property tax, ap property tax payment",
+    schemaType: "BlogPosting"
+  },
+  "telangana-22a-property-registration-valid-approvals-2026": {
+    title: "Telangana 22-A Properties Can Now Be Registered: New Rule",
+    description: "Telangana now allows registration of 22-A listed plots, houses and flats with valid GHMC, HMDA or DTCP approvals. The link-document rule and how to apply.",
+    h1: "Telangana Allows Registration of 22-A Properties That Have Valid Approvals",
+    keywords: "22a registration telangana, section 22a new rules 2026, 22a property registration order, register 22a property telangana, 22a valid approvals ghmc hmda dtcp, link document 22a registration, 22a district committee collector, prohibited property list telangana, 22a plots houses flats registration, telangana revenue department 22a order",
+    schemaType: "BlogPosting"
+  },
   "tgspdcl-electricity-bill-name-change-hyderabad": {
     title: "TGSPDCL Electricity Bill Name Change Hyderabad: Full Guide",
     description: "Step-by-step guide to change the name on your TGSPDCL electricity bill in Hyderabad. Documents required, process, fees, and timeline explained.",

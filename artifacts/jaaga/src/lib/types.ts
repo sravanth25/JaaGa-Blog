@@ -23,6 +23,7 @@ export type Post = {
   category: Category['slug'];
   tags: string[];
   featuredImage: string;
+  featuredImageAlt?: string;
   metaTitle: string;
   metaDescription: string;
   keywords: string;
@@ -31,6 +32,7 @@ export type Post = {
   ogTitle?: string;
   ogDescription?: string;
   schemaType?: string;
+  extraSchema?: any;
   faqs?: {
     question: string;
     answer: string;

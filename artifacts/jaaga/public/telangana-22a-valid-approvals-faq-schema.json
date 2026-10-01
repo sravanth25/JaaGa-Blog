@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can 22-A properties be registered in Telangana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, under orders issued by the Telangana Revenue Department in September 2026, open plots, houses and flats on the Section 22-A prohibited properties list can be registered if they were developed with valid statutory approvals from GHMC, HMDA, DTCP, or a local body, subject to the link-document condition and examination by a district-level committee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the link-document rule for 22-A property registration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The link-document rule requires that at least one registered transaction in the property's chain of title must have occurred after the date on which the layout or building approval was granted. If all registered sales predate the approval, or if there is no registered transaction after the approval date, the property does not meet the reported condition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who examines and approves 22-A registration applications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Applications are examined case by case by district-level committees headed by the District Collector, and including the Additional Collector (Local Bodies), the District Registrar, and representatives of HMDA, the relevant municipality, or local body."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this order delete my survey number from the 22-A list?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The order allows registration of specific developed properties carrying statutory approvals on a case-by-case basis. It does not delete the survey number from the prohibited properties list, and it does not determine ownership of the land."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which 22-A properties are eligible under this order?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The route is aimed at genuinely developed properties—open plots, houses, and flats—that carry statutory approvals from GHMC, HMDA, DTCP, or local bodies. It is not available for government land, assigned land, endowment or Wakf property, or ceiling surplus land."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents do I need to submit to the District Collector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need the sanctioned layout, building, or apartment approval document (with sanction number and date), registered link documents showing at least one transaction after the approval, an Encumbrance Certificate (EC), and property tax receipts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my property was wrongly listed under 22-A without any government interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your property has no government interest and was listed by mistake, use the grievance route for inclusion in the prohibited properties list decided by the Collector. The department's toll-free number is 1800-599-4788."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When was the Telangana 22-A property registration order issued?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Revenue Department issued the order on 24–25 September 2026, following the Chief Minister's assurance in the Assembly on 16 September 2026. No separate commencement date was reported."
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is property tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A charge on property levied by the local body where the property stands, covering services such as water supply, drainage, street lighting and sanitation. In Andhra Pradesh's towns and cities it is charged half-yearly by the urban local body and is commonly called house tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the property tax rate in Andhra Pradesh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For residential property, 118 of the 123 urban local bodies charge 0.075% of capital value per half year. Visakhapatnam and Machilipatnam charge 0.06%, Vijayawada and Guntur 0.065%, and Kakinada 0.05%. Non-residential property is charged at 0.15% per half year in all but Kakinada, which charges 0.18%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is property tax calculated in Andhra Pradesh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As a percentage of the property's capital value, charged half-yearly. The state moved from the Annual Rental Value system to the Capital Value System, and capital value is based on the market value fixed by the Stamps and Registration Department."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get my AP property tax receipt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JaaGa fetches Andhra Pradesh property tax details and delivers a soft copy within 24 hours for 149 credits. Give us the property details and we do the lookup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a property tax receipt show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Payment confirmation, assessment details, the amount paid, the period covered, any arrears, and the municipal jurisdiction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a property tax receipt be used as proof of ownership?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It supports an ownership claim but cannot replace legal documents such as a Sale Deed or Patta and Mutation records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my property tax receipt still in the previous owner's name?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Registering a sale deed does not update the municipal record. A separate mutation application is needed before bills and receipts reflect the new owner."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is property tax the same as land revenue?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Property tax is collected by municipal bodies on urban property. Land revenue applies to rural agricultural land."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is library cess on property tax in AP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A cess of 8% levied along with property tax in every urban local body in the state."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to pay property tax if the property is vacant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most municipal bodies collect tax regardless of occupancy, and only specific exemptions apply. Vacant land is taxed separately through vacant land tax."
+      }
+    }
+  ]
+}

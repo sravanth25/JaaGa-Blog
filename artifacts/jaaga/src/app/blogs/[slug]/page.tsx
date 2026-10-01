@@ -50,6 +50,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const pageTitle = seo ? seo.title : post.metaTitle;
   const pageDesc = seo ? seo.description : post.metaDescription;
   const pageKeywords = seo ? seo.keywords : post.keywords;
+  const imageAlt = (post as any).featuredImageAlt || pageTitle;
 
   const images = post.featuredImage
     ? [
@@ -57,7 +58,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
           url: post.featuredImage,
           width: 1200,
           height: 630,
-          alt: pageTitle,
+          alt: imageAlt,
         },
       ]
     : [
@@ -107,6 +108,7 @@ export default async function BlogPostPage({params}: Props) {
   const h1Text = seo ? seo.h1 : post.title;
   const pageDesc = seo ? seo.description : post.metaDescription;
   const pageKeywords = seo ? seo.keywords : post.keywords;
+  const imageAlt = (post as any).featuredImageAlt || h1Text;
 
   const category = categories.find(c => c.slug === post.category);
   const breadcrumbItems = [
@@ -180,6 +182,30 @@ export default async function BlogPostPage({params}: Props) {
     };
   }
 
+  // Handle explicit custom schemas or FAQ schema object if attached
+  if ((post as any).schema) {
+    extraSchemas.push((post as any).schema);
+  }
+  if ((post as any).extraSchema) {
+    if (Array.isArray((post as any).extraSchema)) {
+      extraSchemas.push(...(post as any).extraSchema);
+    } else {
+      extraSchemas.push((post as any).extraSchema);
+    }
+  }
+
+  // Extract embedded JSON-LD scripts from post content so they are safely rendered in head/page
+  const scriptRegex = /<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi;
+  let scriptMatch;
+  while ((scriptMatch = scriptRegex.exec(post.content)) !== null) {
+    try {
+      const parsed = JSON.parse(scriptMatch[1]);
+      extraSchemas.push(parsed);
+    } catch (e) {
+      console.error("Failed to parse embedded LD+JSON schema:", e);
+    }
+  }
+
   const faqEntities = faqSchema?.mainEntity || [];
 
   // Strip duplicate headers (h1 or similar h2)
@@ -238,6 +264,16 @@ export default async function BlogPostPage({params}: Props) {
               </div>
             </div>
           </header>
+
+          {post.featuredImage && !cleanedContent.includes(post.featuredImage) && (
+            <div className="relative w-full aspect-[16/9] max-h-[440px] rounded-xl overflow-hidden mb-8 border border-border shadow-sm">
+              <img
+                src={post.featuredImage}
+                alt={imageAlt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
 
           <div
               className="prose prose-lg max-w-none text-foreground prose-h2:font-headline prose-h2:font-bold prose-h3:font-headline prose-h3:font-bold prose-a:text-primary hover:prose-a:underline prose-headings:font-headline prose-headings:font-bold prose-p:text-foreground prose-strong:text-foreground"
