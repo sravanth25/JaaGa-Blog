@@ -266,11 +266,11 @@ export default async function BlogPostPage({params}: Props) {
           </header>
 
           {post.featuredImage && !cleanedContent.includes(post.featuredImage) && (
-            <div className="relative w-full aspect-[16/9] max-h-[440px] rounded-xl overflow-hidden mb-8 border border-border shadow-sm">
+            <div className="relative w-full rounded-xl overflow-hidden mb-8 border border-border shadow-sm bg-muted/10">
               <img
                 src={post.featuredImage}
                 alt={imageAlt}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain block"
               />
             </div>
           )}

@@ -24,7 +24,7 @@ export function BlogPostCard({post}: BlogPostCardProps) {
             <img
               src={getOptimizedImageUrl(post.featuredImage, 600)}
               alt={post.title}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+              className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </Link>
