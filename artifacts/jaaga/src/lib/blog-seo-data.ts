@@ -7,6 +7,13 @@ export interface BlogSEO {
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
+  "telangana-ulc-cases-fast-track-2026": {
+    title: "Telangana ULC Cases Fast-Tracked: What It Means in 2026",
+    description: "Telangana has ordered a fast-track review of pending Urban Land Ceiling applications. What ULC land is, why it blocks registration, and what owners should do.",
+    h1: "Telangana Will Fast-Track Pending Urban Land Ceiling Cases: What It Means for Your Property",
+    keywords: "urban land ceiling telangana, ulc land telangana, ulc regularisation, ulc 22a telangana, urban land ceiling act 1976, ulc land registration hyderabad, ceiling surplus land telangana, ulc memo 2026, ulc colonies hyderabad, what is ulc land",
+    schemaType: "BlogPosting"
+  },
   "ap-property-tax-receipt-download": {
     title: "AP Property Tax: Rates, Receipt & Download Online 2026",
     description: "What property tax is, how Andhra Pradesh calculates it, what your city charges, and how to get your AP property tax receipt as a soft copy from JaaGa.",

@@ -224,19 +224,31 @@ export async function pullPostsFromGitHub(resolvedLocalPath: string): Promise<{ 
     try {
       console.log(`[Git-Sync] Pulling latest posts.json from repository '${repo}' path '${repoPath}' on branch '${branch}'...`);
 
-      const res = await fetch(`${url}?ref=${branch}`, {
+      let res = await fetch(`${url}?ref=${branch}`, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          ...(token ? { "Authorization": `Bearer ${token}` } : {}),
           "Accept": "application/vnd.github.v3+json",
           "User-Agent": "JaaGa-Blog-Sync",
         },
       });
 
-      if (res.status === 401 && i < candidates.length - 1) {
-        console.warn(`[Git-Sync] Candidate token ${i + 1} returned 401 Unauthorized. Trying alternative candidate token...`);
-        lastError = "Unauthorized (Status: 401)";
-        continue;
+      if (res.status === 401) {
+        console.warn(`[Git-Sync] Token returned 401 Unauthorized. Retrying with public unauthenticated request...`);
+        const unauthRes = await fetch(`${url}?ref=${branch}`, {
+          method: "GET",
+          headers: {
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": "JaaGa-Blog-Sync",
+          },
+        });
+        if (unauthRes.ok) {
+          res = unauthRes;
+        } else if (i < candidates.length - 1) {
+          console.warn(`[Git-Sync] Candidate token ${i + 1} returned 401 Unauthorized. Trying alternative candidate token...`);
+          lastError = "Unauthorized (Status: 401)";
+          continue;
+        }
       }
 
       if (res.ok) {
@@ -246,13 +258,31 @@ export async function pullPostsFromGitHub(resolvedLocalPath: string): Promise<{ 
           const parsedPosts = JSON.parse(decodedString);
 
           if (Array.isArray(parsedPosts)) {
+            // Check existing local posts so we don't accidentally wipe locally created posts that haven't been pushed to GitHub yet
+            let mergedPosts = parsedPosts;
+            if (fs.existsSync(resolvedLocalPath)) {
+              try {
+                const localPosts = JSON.parse(fs.readFileSync(resolvedLocalPath, "utf8"));
+                if (Array.isArray(localPosts)) {
+                  const remoteSlugs = new Set(parsedPosts.map((p: any) => p.slug));
+                  const unpushedLocalPosts = localPosts.filter((p: any) => !remoteSlugs.has(p.slug));
+                  if (unpushedLocalPosts.length > 0) {
+                    mergedPosts = [...unpushedLocalPosts, ...parsedPosts];
+                    console.log(`[Git-Sync] Preserved ${unpushedLocalPosts.length} local unpushed posts during sync.`);
+                  }
+                }
+              } catch (e) {
+                // ignore error parsing local posts
+              }
+            }
+
             // Write to local disk to keep development mode in sync
             const parentDir = path.dirname(resolvedLocalPath);
             if (!fs.existsSync(parentDir)) {
               fs.mkdirSync(parentDir, { recursive: true });
             }
-            fs.writeFileSync(resolvedLocalPath, JSON.stringify(parsedPosts, null, 2), "utf8");
-            console.log(`[Git-Sync] Automatically synchronized local database from GitHub with ${parsedPosts.length} posts!`);
+            fs.writeFileSync(resolvedLocalPath, JSON.stringify(mergedPosts, null, 2), "utf8");
+            console.log(`[Git-Sync] Automatically synchronized local database from GitHub with ${mergedPosts.length} posts!`);
 
             // If an alternative candidate succeeded, promote it as primary saved config
             if (i > 0) {
@@ -262,8 +292,8 @@ export async function pullPostsFromGitHub(resolvedLocalPath: string): Promise<{ 
 
             return {
               success: true,
-              message: `Successfully synchronized ${parsedPosts.length} posts from GitHub! Your local database is now identical to the remote.`,
-              data: parsedPosts,
+              message: `Successfully synchronized ${mergedPosts.length} posts from GitHub! Your local database is now identical to the remote.`,
+              data: mergedPosts,
             };
           }
         }

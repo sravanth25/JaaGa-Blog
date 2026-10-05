@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is ULC land in Telangana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Land that was declared surplus under the Urban Land (Ceiling and Regulation) Act, 1976, which capped how much vacant urban land a person or family could hold. Surplus land was to vest in the state government."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Has the Urban Land Ceiling Act been repealed in Telangana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The central Repeal Act of 1999 was adopted in Andhra Pradesh with effect from 27 March 2008 and carried through to Telangana. However, Section 3 of the Repeal Act saved cases where land had already vested and the government had taken possession, which is why ULC disputes continue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What did the Telangana government announce in September 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On 27 September 2026 the Revenue Minister announced a fast-track review of pending ULC applications. A memo directs officials to examine applications filed under earlier government orders and regularise eligible cases, particularly for colonies that were partially regularised or never regularised."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this mean my ULC property can now be registered?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not automatically. Reporting on the order is clear that each application must be examined individually and the legal and procedural requirements completed. The memo makes a decision more likely, not certain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my property on the Section 22-A list because of ULC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ceiling surplus land is one of the categories that can be entered on the Section 22-A prohibited list, which blocks registration. An unresolved ULC declaration can therefore surface as a 22-A entry years later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What did the Supreme Court say about ULC in 2025?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In M/s A.P. Electrical Equipment Corporation v. Tahsildar, decided 27 February 2025, the Court held that vesting under Section 10(3) is vesting of title and not possession, that notices under Sections 10(5) and 10(6) are mandatory, and that proceedings do not survive the repeal where actual physical possession was never taken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which government orders do the pending applications fall under?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reports name G.O.s 455, 456, 747 and 92. Confirm which one applies to your colony before filing anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I sell a ULC-affected property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not while the underlying issue blocks registration. Resolve the ULC application and any Section 22-A entry first, and take legal advice before signing any agreement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long will the fast-track take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No timeline was announced. The memo directs officials to examine pending cases expeditiously, but no deadline has been published."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many ULC applications are pending?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No official figure has been published. The minister described thousands of applications as having remained unresolved for years."
+      }
+    }
+  ]
+}
