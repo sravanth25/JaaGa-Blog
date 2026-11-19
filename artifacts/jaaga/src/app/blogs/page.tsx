@@ -1,4 +1,5 @@
 
+import { Suspense } from "react";
 import BlogListClient from "@/components/blog/blog-list-client";
 import { getPosts } from "@/lib/server/data";
 import type { Metadata } from 'next';
@@ -138,7 +139,9 @@ export default async function BlogListPage() {
           <p className="text-xl text-muted-foreground">No blog posts found at the moment. Please check back later.</p>
         </div>
       ) : (
-        <BlogListClient posts={sortedPosts} />
+        <Suspense fallback={<div className="py-12 text-center text-muted-foreground">Loading search & articles...</div>}>
+          <BlogListClient posts={sortedPosts} />
+        </Suspense>
       )}
     </div>
   );

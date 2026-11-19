@@ -1,0 +1,54 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is PTIN mandatory for property registration in Hyderabad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, within CURE limits. From November 2026, a PTIN or VLTIN must be entered to book a registration slot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between PTIN and VLTIN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A PTIN is for buildings that pay property tax. A VLTIN is for open land that pays Vacant Land Tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My property has no PTIN. Can I still register it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only after you get a PTIN or VLTIN and pay the tax. In urgent cases, registration can go ahead as pending, but the document is released only after the tax is paid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a new PTIN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apply for self-assessment on the GHMC, Cyberabad or Malkajgiri corporation website or the My CURE App. The corporation verifies the property and issues the number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about flats bought before the OC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is not yet clear. Flats are usually assessed only after the OC, so ask your builder and sub-registrar how such sales will be registered."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this apply outside Hyderabad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The memorandum covers CURE limits only, as reported."
+      }
+    }
+  ]
+}

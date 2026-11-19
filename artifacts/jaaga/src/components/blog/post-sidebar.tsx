@@ -3,6 +3,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Search} from 'lucide-react';
@@ -11,6 +12,8 @@ import { Post } from '@/lib/types';
 import { useEffect, useState } from 'react';
 
 export function PostSidebar() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   
   useEffect(() => {
@@ -24,13 +27,24 @@ export function PostSidebar() {
     return allPosts.filter(p => p.category === slug).length;
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/blogs?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <aside className="space-y-8">
       <div className="space-y-2">
         <h3 className="font-headline text-xl font-semibold">Search</h3>
-        <form className="flex gap-2">
-          <Input placeholder="Find an article..." />
-          <Button type="submit" size="icon" variant="secondary">
+        <form onSubmit={handleSearch} className="flex gap-2">
+          <Input
+            placeholder="Find an article..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+          <Button type="submit" size="icon" variant="secondary" title="Search">
             <Search className="h-4 w-4" />
             <span className="sr-only">Search</span>
           </Button>

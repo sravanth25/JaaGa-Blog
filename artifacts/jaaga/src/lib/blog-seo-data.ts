@@ -7,6 +7,20 @@ export interface BlogSEO {
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
+  "ptin-mandatory-property-registration-hyderabad": {
+    title: "PTIN Must for Property Registration in Hyderabad | JaaGa",
+    description: "Telangana now requires a PTIN or VLTIN to book property registration slots in Hyderabad's CURE limits. What changed, who is affected and how to get a PTIN.",
+    h1: "PTIN Now Mandatory for Property Registration in Hyderabad: What Buyers and Sellers Must Know",
+    keywords: "PTIN mandatory for property registration, PTIN Hyderabad, VLTIN Hyderabad, property tax identification number, PTIN registration Telangana, CURE property registration, property registration Hyderabad 2026, how to get PTIN Hyderabad, PTIN self assessment, My CURE App, GHMC PTIN, Cyberabad Municipal Corporation property tax, Malkajgiri Municipal Corporation property tax, vacant land tax Hyderabad, PTIN for under construction flat, slot booking property registration Telangana, mutation after registration Hyderabad",
+    schemaType: "BlogPosting"
+  },
+  "power-of-attorney-for-property-india-gpa-spa": {
+    title: "Power of Attorney for Property in India: GPA vs SPA | JaaGa",
+    description: "Can a GPA holder sell your property? Learn GPA vs SPA, registration and stamp duty in Telangana and AP, NRI rules, and how to verify a POA before you buy.",
+    h1: "Power of Attorney for Property in India: GPA vs SPA, Registration and Risks",
+    keywords: "power of attorney for property, GPA vs SPA, general power of attorney, special power of attorney, power of attorney registration Telangana, GPA stamp duty Telangana, power of attorney Andhra Pradesh, NRI power of attorney India, can GPA holder sell property, power of attorney cancellation, GPA sale validity, Suraj Lamps judgment, how to verify power of attorney, POA property fraud",
+    schemaType: "BlogPosting"
+  },
   "telangana-ulc-cases-fast-track-2026": {
     title: "Telangana ULC Cases Fast-Tracked: What It Means in 2026",
     description: "Telangana has ordered a fast-track review of pending Urban Land Ceiling applications. What ULC land is, why it blocks registration, and what owners should do.",

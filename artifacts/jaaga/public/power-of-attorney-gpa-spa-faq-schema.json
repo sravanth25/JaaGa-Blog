@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does a Power of Attorney transfer property ownership in India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A Power of Attorney (POA) only authorises an agent to act on the owner's behalf. Immovable property can be legally transferred only through a registered deed of conveyance such as a sale deed, as affirmed by the Supreme Court in Suraj Lamp & Industries Pvt. Ltd. v. State of Haryana (2011)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a General POA (GPA) and a Special POA (SPA)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A General Power of Attorney (GPA) grants broad powers across many matters or multiple properties, which carries higher risk of misuse. A Special Power of Attorney (SPA) limits the agent's authority to one specific task or one named property—such as registering a single sale deed—making it safer for most property transactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a GPA holder sell my property?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A GPA holder can sign and register a sale deed on the owner's behalf only if the POA explicitly grants the power to sell and names the property clearly. However, a GPA is not a sale in itself, and holding a GPA alone does not make the agent the owner."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can an NRI create a valid Power of Attorney for property in India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An NRI can draft the POA with exact property details, sign it before an Indian Embassy or Consulate (or before a local notary with Hague apostille where accepted), courier the original to the agent in India, pay stamp duty within 3 months of its arrival in India, and register or authenticate it at the Sub-Registrar Office under Section 33 of the Registration Act."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel or revoke a Power of Attorney?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Execute a deed of revocation referencing the original POA's date and registration number, register the revocation at the Sub-Registrar Office if the original POA was registered, notify the agent in writing with proof of receipt, inform relevant parties (banks, builders, tenants, and the SRO), and optionally publish a public notice in a local newspaper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an 'irrevocable' Power of Attorney ever be cancelled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, unless the agent has their own financial or legal interest in the property. Under Section 202 of the Indian Contract Act, 1872, simply writing 'irrevocable' does not prevent cancellation; it becomes irrevocable only when coupled with an interest, such as a builder who has invested in a development project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does a Power of Attorney end automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under Section 201 of the Indian Contract Act, a POA terminates automatically when the principal dies, becomes insolvent, or loses mental capacity. For an SPA, it also ends once the specific task is completed. Any sale executed by an agent after the principal's death is invalid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should a buyer check before buying property from a POA holder?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Obtain a certified copy of the POA from the Sub-Registrar Office, confirm the power to sell and exact property schedule are stated plainly, verify the principal is alive and has not revoked the POA, verify foreign attestation and 3-month stamping for NRI POAs, pull a 30-year Encumbrance Certificate, speak directly with the owner, pay sale proceeds into the owner's own bank account, and obtain a legal opinion."
+      }
+    }
+  ]
+}
