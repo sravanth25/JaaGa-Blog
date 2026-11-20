@@ -9,7 +9,7 @@ import { Breadcrumb } from '@/components/common/breadcrumb';
 
 
 type Props = {
-  params: {slug: string};
+  params: Promise<{slug: string}>;
 };
 
 export async function generateStaticParams() {
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
-  const category = categories.find(c => c.slug === params.slug);
+  const {slug} = await params;
+  const category = categories.find(c => c.slug === slug);
 
   if (!category) {
     return {
@@ -31,13 +32,14 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     title: `${category.name} Articles`,
     description: `Browse all articles in the ${category.name} category on Jaaga Insights. ${category.description}`,
     alternates: {
-      canonical: `/category/${params.slug}`,
+      canonical: `/category/${slug}`,
     },
   };
 }
 
-export default function CategoryPage({params}: Props) {
-  const category = categories.find(c => c.slug === params.slug);
+export default async function CategoryPage({params}: Props) {
+  const {slug} = await params;
+  const category = categories.find(c => c.slug === slug);
 
   if (!category) {
     notFound();
@@ -48,7 +50,7 @@ export default function CategoryPage({params}: Props) {
 
   const breadcrumbItems = [
     {label: 'Home', href: '/'},
-    {label: 'Blog', href: '/blog'},
+    {label: 'Blog', href: '/blogs'},
     {label: category.name, href: `/category/${category.slug}`},
   ];
 
