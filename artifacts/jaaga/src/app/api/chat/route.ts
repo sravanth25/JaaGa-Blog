@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { NextResponse } from "next/server";
 
 const SYSTEM_PROMPT = `You are JaaGa AI Assistant — a helpful property legal intelligence assistant for JaaGa (jaaga.ai), an Indian real estate platform.

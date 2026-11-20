@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 import {Header} from '@/components/common/header';
 import {Footer} from '@/components/common/footer';
 import {Toaster} from '@/components/ui/toaster';

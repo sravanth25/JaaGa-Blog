@@ -37,7 +37,7 @@ export function EditPostDialog({ post, isOpen, onClose }: EditPostDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   
-  const ReactQuill = useMemo(() => lazy(() => import('react-quill')), []);
+  const ReactQuill = useMemo(() => lazy(() => import('react-quill-new')), []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -35,7 +35,7 @@ const formSchema = z.object({
     .min(20, 'Excerpt must be at least 20 characters.')
     .max(200, 'Excerpt cannot be more than 200 characters.'),
   content: z.string().min(100, 'Content must be at least 100 characters.'),
-  category: z.string({required_error: 'Please select a category.'}),
+  category: z.string({error: 'Please select a category.'}),
   tags: z.string().min(3, 'Please provide at least one tag.'),
   featuredImage: z.string().url('Please provide a valid URL for the featured image.'),
   metaTitle: z.string().min(5, 'Meta title must be at least 5 characters.'),
@@ -47,7 +47,7 @@ export function BlogEditor() {
   const [isLoading, setIsLoading] = useState(false);
   const {toast} = useToast();
 
-  const ReactQuill = lazy(() => import('react-quill'));
+  const ReactQuill = lazy(() => import('react-quill-new'));
 
 
   const form = useForm<z.infer<typeof formSchema>>({

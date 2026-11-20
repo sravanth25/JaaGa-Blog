@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getPosts } from '@/lib/server/data';
 import { getPostDate } from '@/lib/utils';
 import type { MetadataRoute } from 'next'

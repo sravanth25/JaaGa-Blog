@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 
 import { getPosts, savePosts } from "@/lib/server/data";
 import type { Post } from "@/lib/types";

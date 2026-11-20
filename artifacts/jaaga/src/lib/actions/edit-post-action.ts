@@ -28,7 +28,7 @@ export async function editPostAction(values: unknown) {
     return { success: true, data };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: 'Invalid input: ' + error.errors.map(e => e.message).join(', ') };
+      return { success: false, error: 'Invalid input: ' + error.issues.map((e) => e.message).join(', ') };
     }
     console.error(error);
     return { success: false, error: error instanceof Error ? error.message : 'An unexpected error occurred.' };
