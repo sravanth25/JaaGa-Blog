@@ -265,6 +265,18 @@ export default async function BlogPostPage({params}: Props) {
             </div>
           </header>
 
+          {seo?.quickAnswer && (
+            <section
+              aria-labelledby="quick-answer-heading"
+              className="mb-8 rounded-xl border border-primary/20 border-l-4 border-l-primary bg-primary/5 p-5"
+            >
+              <h2 id="quick-answer-heading" className="font-headline text-lg font-bold mb-2">
+                Quick answer
+              </h2>
+              <p className="text-foreground leading-relaxed">{seo.quickAnswer}</p>
+            </section>
+          )}
+
           {post.featuredImage && !cleanedContent.includes(post.featuredImage) && (
             <div className="relative w-full rounded-xl overflow-hidden mb-8 border border-border shadow-sm bg-muted/10">
               <img
