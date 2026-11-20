@@ -33,6 +33,8 @@ export type Post = {
   ogDescription?: string;
   schemaType?: string;
   extraSchema?: any;
+  /** ISO date of the last meaningful content update. */
+  updatedAt?: string;
   faqs?: {
     question: string;
     answer: string;

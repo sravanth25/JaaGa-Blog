@@ -6,6 +6,8 @@ export interface BlogSEO {
   schemaType: string;
   /** Short answer shown in a box at the top of the post. */
   quickAnswer?: string;
+  /** Official government sources the post relies on. */
+  sources?: { name: string; url: string }[];
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
@@ -50,7 +52,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "TGSPDCL Electricity Bill Name Change in Hyderabad: Documents, Process & Timeline",
     keywords: "TGSPDCL name change, electricity bill name change Hyderabad, TGSPDCL process",
     schemaType: "HowTo",
-    quickAnswer: "To change the name on a TGSPDCL electricity bill, apply on the TGSPDCL portal under Name Change / Title Transfer using your Unique Service Number (USC), or at your local sub-division office. Keep the registered sale deed, ID proof, latest electricity bill and house tax receipt ready. After approval, the new name usually appears within one or two billing cycles."
+    quickAnswer: "To change the name on a TGSPDCL electricity bill, apply on the TGSPDCL portal under Name Change / Title Transfer using your Unique Service Number (USC), or at your local sub-division office. Keep the registered sale deed, ID proof, latest electricity bill and house tax receipt ready. After approval, the new name usually appears within one or two billing cycles.",
+    sources: [
+      { name: "TGSPDCL (Southern Power Distribution Company of Telangana)", url: "https://tgsouthernpower.org" }
+    ]
   },
   "how-to-check-22a-prohibited-land-in-telangana": {
     title: "Bhu Bharathi Prohibited Land List: Check 22A by Survey No",
@@ -58,7 +63,11 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Check 22A Prohibited Land in Telangana Before Buying Property",
     keywords: "22A prohibited land Telangana, Section 22A check, Telangana land records",
     schemaType: "HowTo",
-    quickAnswer: "To check 22A prohibited land in Telangana, open the Bhu Bharati portal (bhubharati.telangana.gov.in) or the IGRS Telangana prohibited property search, select your district, mandal and village, and search by survey number. If the survey number is listed under Section 22A, the Sub-Registrar will refuse to register a sale, and banks will not lend against it, so check before you pay any advance."
+    quickAnswer: "To check 22A prohibited land in Telangana, open the Bhu Bharati portal (bhubharati.telangana.gov.in) or the IGRS Telangana prohibited property search, select your district, mandal and village, and search by survey number. If the survey number is listed under Section 22A, the Sub-Registrar will refuse to register a sale, and banks will not lend against it, so check before you pay any advance.",
+    sources: [
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" },
+      { name: "IGRS Telangana (Registration & Stamps)", url: "https://registration.telangana.gov.in" }
+    ]
   },
   "tamil-nadu-land-records-complete-guide": {
     title: "Tamil Nadu Land Records: Complete Guide 2026 | Patta, Chitta, FMB",
@@ -80,7 +89,11 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Maharashtra Property Card and 7/12 Utara Online",
     keywords: "Maharashtra property card, 7/12 Utara, Maharashtra land records",
     schemaType: "HowTo",
-    quickAnswer: "In Maharashtra, the Property Card is the ownership record for urban (CTS) property, while the 7/12 Utara is the record for agricultural land. Both are available online through Mahabhulekh, with related services on Aapli Chawadi. Check the Ferfar (mutation entries) as well to see how ownership changed over time."
+    quickAnswer: "In Maharashtra, the Property Card is the ownership record for urban (CTS) property, while the 7/12 Utara is the record for agricultural land. Both are available online through Mahabhulekh, with related services on Aapli Chawadi. Check the Ferfar (mutation entries) as well to see how ownership changed over time.",
+    sources: [
+      { name: "Mahabhulekh (Maharashtra land records)", url: "https://bhulekh.mahabhumi.gov.in" },
+      { name: "Mahabhumi (Maharashtra Land Records Department)", url: "https://mahabhumi.gov.in" }
+    ]
   },
   "how-to-research-land-in-telangana": {
     title: "How to Research Land in Telangana: Records, Portals & Checks",
@@ -116,7 +129,11 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Telangana EC, ROR & Pahani Using JaaGa App",
     keywords: "download Telangana EC, Telangana ROR 1B, Pahani download Telangana",
     schemaType: "HowTo",
-    quickAnswer: "Telangana has three key land records: the Pahani (Adangal) shows how agricultural land is used, the ROR 1B shows who owns it, and the Encumbrance Certificate (EC) lists registered transactions such as sales and mortgages. Pahani and ROR 1B come from Bhu Bharati and the EC from IGRS Telangana; JaaGa fetches all three for you online."
+    quickAnswer: "Telangana has three key land records: the Pahani (Adangal) shows how agricultural land is used, the ROR 1B shows who owns it, and the Encumbrance Certificate (EC) lists registered transactions such as sales and mortgages. Pahani and ROR 1B come from Bhu Bharati and the EC from IGRS Telangana; JaaGa fetches all three for you online.",
+    sources: [
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" },
+      { name: "IGRS Telangana (Registration & Stamps)", url: "https://registration.telangana.gov.in" }
+    ]
   },
   "telangana-government-core-urban-act-cure-ghmc-replacement": {
     title: "CURE Act Full Form: The Law Replacing GHMC in Telangana",
@@ -138,7 +155,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Encumbrance Certificate (EC) in Telangana Online",
     keywords: "download EC Telangana, encumbrance certificate Telangana, Dharani EC",
     schemaType: "HowTo",
-    quickAnswer: "To download an Encumbrance Certificate (EC) in Telangana, go to the IGRS Telangana registration portal, open Encumbrance Certificate services, and search by document number or by property details. A clean EC only shows registered transactions, so always check it together with the sale deed and land records."
+    quickAnswer: "To download an Encumbrance Certificate (EC) in Telangana, go to the IGRS Telangana registration portal, open Encumbrance Certificate services, and search by document number or by property details. A clean EC only shows registered transactions, so always check it together with the sale deed and land records.",
+    sources: [
+      { name: "IGRS Telangana (Registration & Stamps)", url: "https://registration.telangana.gov.in" }
+    ]
   },
   "adangal-ror-1b-land-records-guide": {
     title: "ROR Full Form, Adangal & 1B Meaning (Telangana & AP)",
@@ -146,7 +166,11 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "ROR Full Form in Land Records: Adangal, 1B and Pahani Explained",
     keywords: "ror full form, ror full form in land records, 1b adangal, ror 1b",
     schemaType: "Article",
-    quickAnswer: "ROR stands for Record of Rights, the master register of who owns land and on what terms. Adangal (called Pahani in Telangana) records how agricultural land is used, and the 1B lists each pattadar's name, khata number and extent. Check them online on Bhu Bharati in Telangana or MeeBhoomi in Andhra Pradesh, and make sure the owner name, survey number and extent match across all of them."
+    quickAnswer: "ROR stands for Record of Rights, the master register of who owns land and on what terms. Adangal (called Pahani in Telangana) records how agricultural land is used, and the 1B lists each pattadar's name, khata number and extent. Check them online on Bhu Bharati in Telangana or MeeBhoomi in Andhra Pradesh, and make sure the owner name, survey number and extent match across all of them.",
+    sources: [
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" },
+      { name: "MeeBhoomi (Andhra Pradesh land records)", url: "https://meebhoomi.ap.gov.in" }
+    ]
   },
   "bhoomi-rtc-pahani-karnataka-guide": {
     title: "i-RTC Karnataka: Download Bank-Valid Bhoomi RTC (Pahani)",
@@ -154,7 +178,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "Bhoomi RTC & i-RTC Meaning: Download a Bank-Valid Pahani (Karnataka)",
     keywords: "i rtc, i-rtc, bhoomi rtc, pahani karnataka",
     schemaType: "HowTo",
-    quickAnswer: "i-RTC is the digitally signed version of the Bhoomi RTC (Pahani), with a government signature and QR code. Banks, courts and registration offices accept it, while the free RTC you can view on landrecords.karnataka.gov.in is unsigned and often rejected. To get one, use the signed-document option on the Bhoomi portal, enter your district, taluk, hobli, village and survey number, and pay the fee."
+    quickAnswer: "i-RTC is the digitally signed version of the Bhoomi RTC (Pahani), with a government signature and QR code. Banks, courts and registration offices accept it, while the free RTC you can view on landrecords.karnataka.gov.in is unsigned and often rejected. To get one, use the signed-document option on the Bhoomi portal, enter your district, taluk, hobli, village and survey number, and pay the fee.",
+    sources: [
+      { name: "Bhoomi (Karnataka land records)", url: "https://landrecords.karnataka.gov.in" }
+    ]
   },
   "fmb-sketch-in-tamil-nadu-how-to-view-download-check-fmb-map-online-complete-guide-2026": {
     title: "FMB Sketch Tamil Nadu: How to View & Download FMB Map Online 2026",
@@ -225,7 +252,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Maharashtra Property Card Using the JaaGa App",
     keywords: "Maharashtra property card download, Malmatta Patrak, JaaGa Maharashtra",
     schemaType: "HowTo",
-    quickAnswer: "To download a Maharashtra Property Card (Malmatta Patrak), select Property Card in the JaaGa app or on Mahabhulekh, choose your district, taluka and village or division, and enter the survey or CTS number. If you see \"No Record Found\", re-check the village selection and enter the number exactly as it appears in your documents."
+    quickAnswer: "To download a Maharashtra Property Card (Malmatta Patrak), select Property Card in the JaaGa app or on Mahabhulekh, choose your district, taluka and village or division, and enter the survey or CTS number. If you see \"No Record Found\", re-check the village selection and enter the number exactly as it appears in your documents.",
+    sources: [
+      { name: "Mahabhulekh (Maharashtra land records)", url: "https://bhulekh.mahabhumi.gov.in" }
+    ]
   },
   "document-translation-for-property-documents": {
     title: "Property Document Translation in India: What You Need to Know",
@@ -247,7 +277,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Odisha Plot Map (Bhunaksha) Simply and Fast Using JaaGa",
     keywords: "Odisha Bhunaksha download, Odisha plot map, land map Odisha online",
     schemaType: "HowTo",
-    quickAnswer: "Bhunaksha is Odisha's digital plot map, showing a plot's shape, boundaries and location. To download it, choose Plot Map / Bhunaksha, select your district and block or village, then enter the khatiyan number and plot ID. Most errors come from a wrong village selection or plot ID, so copy them exactly from your land record."
+    quickAnswer: "Bhunaksha is Odisha's digital plot map, showing a plot's shape, boundaries and location. To download it, choose Plot Map / Bhunaksha, select your district and block or village, then enter the khatiyan number and plot ID. Most errors come from a wrong village selection or plot ID, so copy them exactly from your land record.",
+    sources: [
+      { name: "Bhunaksha Odisha (plot maps)", url: "https://bhunakshaodisha.nic.in" }
+    ]
   },
   "karnataka-khata-extract-how-to-download-khata-online-using-jaaga-portal": {
     title: "Download Karnataka Khata Extract Online Using JaaGa Portal",
@@ -283,7 +316,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "How to Download Andhra Pradesh Certified Copy Online Using JaaGa",
     keywords: "Andhra Pradesh certified copy, AP property documents download, JaaGa Andhra Pradesh",
     schemaType: "HowTo",
-    quickAnswer: "A certified copy (Nakal) is an official copy of a document registered at a Sub-Registrar Office in Andhra Pradesh, and it is legally valid. To get one online, you need three details: the Sub-Registrar Office (SRO) where it was registered, the document number, and the registration year."
+    quickAnswer: "A certified copy (Nakal) is an official copy of a document registered at a Sub-Registrar Office in Andhra Pradesh, and it is legally valid. To get one online, you need three details: the Sub-Registrar Office (SRO) where it was registered, the document number, and the registration year.",
+    sources: [
+      { name: "IGRS Andhra Pradesh (Registration & Stamps)", url: "https://registration.ap.gov.in" }
+    ]
   },
   "tamil-nadu-fmb-sketch-guide": {
     title: "Tamil Nadu FMB Sketch Guide: View, Download & Verify Online",
@@ -368,7 +404,10 @@ export const blogSEOMap: Record<string, BlogSEO> = {
     h1: "Pattadar Passbook in Telangana (2026): How to Download, Correct or Replace It on Bhu Bharati",
     keywords: "pattadar passbook telangana, pattadar passbook download, bhu bharati pattadar passbook, bhu bharati passbook download, duplicate pattadar passbook, pattadar passbook correction, pattadar passbook name correction, eppb download telangana, bhu bharati land details search, dharani passbook",
     schemaType: "BlogPosting",
-    quickAnswer: "Telangana land records moved from Dharani to Bhu Bharati on 14 April 2025. To download your Pattadar Passbook, go to bhubharati.telangana.gov.in, open Land Details Search, and search by survey number or passbook number. Passbooks issued under Dharani stay valid; new corrections and duplicates are handled on Bhu Bharati."
+    quickAnswer: "Telangana land records moved from Dharani to Bhu Bharati on 14 April 2025. To download your Pattadar Passbook, go to bhubharati.telangana.gov.in, open Land Details Search, and search by survey number or passbook number. Passbooks issued under Dharani stay valid; new corrections and duplicates are handled on Bhu Bharati.",
+    sources: [
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" }
+    ]
   },
   "ap-freehold-land-registration-ban-lifted-2026": {
     title: "AP Freehold Land Registration Ban Lifted: 9 Lakh Acres",

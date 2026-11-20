@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { getPosts } from '@/lib/server/data';
 import { blogSEOMap } from '@/lib/blog-seo-data';
-import { getPostDate } from '@/lib/utils';
+import { getPostDate, hasRealPostDate } from '@/lib/utils';
 
 import {categories, services} from '@/lib/data';
 
@@ -121,6 +121,44 @@ export default async function BlogPostPage({params}: Props) {
     .filter(p => p.category === post.category && p.slug !== post.slug)
     .slice(0, 3);
 
+  // Dates: only show a published date when the post ID is a real timestamp.
+  const publishedDate = getPostDate(post.id, post.title, post.slug);
+  const showPublished = hasRealPostDate(post.id);
+  const updatedDate = post.updatedAt ? new Date(post.updatedAt) : null;
+  const hasUpdate =
+    !!updatedDate && !isNaN(updatedDate.getTime()) &&
+    updatedDate.getTime() - publishedDate.getTime() > 24 * 60 * 60 * 1000;
+  const modifiedDate = hasUpdate ? updatedDate! : publishedDate;
+  const formatDate = (d: Date) =>
+    d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' });
+
+  // Official sources: curated per post, plus government links cited in the content.
+  const sourceMap = new Map<string, { name: string; url: string }>();
+  for (const src of seo?.sources ?? []) sourceMap.set(new URL(src.url).hostname, src);
+  for (const m of post.content.matchAll(/<a[^>]+href="(https?:\/\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+    try {
+      const host = new URL(m[1]).hostname;
+      if (!/\.(gov|nic)\.in$/.test(host) || sourceMap.has(host)) continue;
+      const label = m[2].replace(/<[^>]+>/g, '').trim();
+      sourceMap.set(host, { name: label && label.length < 80 ? label : host, url: m[1] });
+    } catch {}
+  }
+  const officialSources = [...sourceMap.values()];
+
+  const jaagaAuthor = {
+    "@type": "Organization",
+    "name": "JaaGa",
+    "url": "https://www.jaaga.ai",
+    "logo": "https://ik.imagekit.io/jaaga/Untitled%20design%20(2).jpg",
+    "description": "JaaGa is an Indian real estate legal intelligence platform that helps owners, buyers and banks access and verify property documents and land records.",
+    "sameAs": [
+      "https://www.linkedin.com/company/jaagaai/",
+      "https://x.com/Jaaga_ai",
+      "https://www.instagram.com/jaaga.ai/",
+      "https://www.youtube.com/@jaagaapp"
+    ]
+  };
+
   // Article Schema
   const articleSchema = {
     "@context": "https://schema.org",
@@ -128,11 +166,7 @@ export default async function BlogPostPage({params}: Props) {
     "headline": h1Text,
     "description": pageDesc,
     "image": post.featuredImage || 'https://ik.imagekit.io/jaaga/ChatGPT%20Image%20Jan%205,%202026,%2011_05_39%20AM.png',
-    "author": {
-      "@type": "Organization",
-      "name": "JaaGa",
-      "url": "https://www.jaaga.ai"
-    },
+    "author": jaagaAuthor,
     "publisher": {
       "@type": "Organization",
       "name": "JaaGa",
@@ -141,8 +175,8 @@ export default async function BlogPostPage({params}: Props) {
         "url": "https://ik.imagekit.io/jaaga/Untitled%20design%20(2).jpg"
       }
     },
-    "datePublished": getPostDate(post.id, post.title, post.slug).toISOString().split('T')[0],
-    "dateModified": getPostDate(post.id, post.title, post.slug).toISOString().split('T')[0],
+    "datePublished": publishedDate.toISOString().split('T')[0],
+    "dateModified": modifiedDate.toISOString().split('T')[0],
     "url": `https://blog.jaaga.ai/blogs/${post.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -261,6 +295,22 @@ export default async function BlogPostPage({params}: Props) {
                 <h1 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter mt-2">
                   {h1Text}
                 </h1>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  By{' '}
+                  <Link href="/about" className="font-semibold text-foreground hover:underline">
+                    JaaGa
+                  </Link>
+                  {showPublished && (
+                    <>
+                      {' · '}Published <time dateTime={publishedDate.toISOString().split('T')[0]}>{formatDate(publishedDate)}</time>
+                    </>
+                  )}
+                  {hasUpdate && (
+                    <>
+                      {' · '}Updated <time dateTime={updatedDate!.toISOString().split('T')[0]}>{formatDate(updatedDate!)}</time>
+                    </>
+                  )}
+                </p>
               </div>
             </div>
           </header>
@@ -291,6 +341,24 @@ export default async function BlogPostPage({params}: Props) {
               className="prose prose-lg max-w-none text-foreground prose-h2:font-headline prose-h2:font-bold prose-h3:font-headline prose-h3:font-bold prose-a:text-primary hover:prose-a:underline prose-headings:font-headline prose-headings:font-bold prose-p:text-foreground prose-strong:text-foreground"
               dangerouslySetInnerHTML={{ __html: cleanedContent }}
             />
+
+          {officialSources.length > 0 && (
+            <section className="mt-12 rounded-xl border border-border bg-muted/30 p-5">
+              <h2 className="font-headline text-xl font-bold mb-3">Official sources</h2>
+              <ul className="list-disc pl-5 space-y-1">
+                {officialSources.map(src => (
+                  <li key={src.url}>
+                    <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                      {src.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Government portals change their layouts and rules from time to time. Always confirm details on the official portal before acting.
+              </p>
+            </section>
+          )}
           
           {faqEntities.length > 0 && (
             <section className="mt-12 space-y-6">
@@ -313,6 +381,28 @@ export default async function BlogPostPage({params}: Props) {
               </Accordion>
             </section>
           )}
+
+          <section className="mt-12 flex gap-4 rounded-xl border border-border p-5" aria-label="About the author">
+            <img
+              src="https://ik.imagekit.io/jaaga/Untitled%20design%20(2).jpg"
+              alt="JaaGa logo"
+              width={56}
+              height={56}
+              className="h-14 w-14 shrink-0 rounded-full object-cover"
+            />
+            <div>
+              <p className="font-headline text-lg font-bold">About JaaGa</p>
+              <p className="mt-1 text-muted-foreground leading-relaxed">
+                JaaGa is an Indian real estate legal intelligence platform. We combine legal expertise with digital tools to help owners, buyers, lawyers and banks get property documents and land records, verify title, and audit properties across Telangana, Andhra Pradesh, Karnataka, Tamil Nadu, Maharashtra and Odisha.
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                This guide is for general information and is not legal advice. For a specific property, consult a qualified lawyer.
+              </p>
+              <Link href="/about" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">
+                More about JaaGa
+              </Link>
+            </div>
+          </section>
 
           <div className="mt-8">
              <Button asChild className="bg-[#153568] hover:bg-[#0f284f] text-white">

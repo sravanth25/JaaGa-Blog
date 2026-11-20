@@ -28,6 +28,11 @@ export function getOptimizedImageUrl(url: string | undefined, width: number = 80
   return url;
 }
 
+/** True when the post ID is a real creation timestamp, not a guessed date. */
+export function hasRealPostDate(postId: number): boolean {
+  return new Date(postId).getFullYear() >= 2000;
+}
+
 /**
  * Converts a post ID (which might be a small sequential number or epoch-seconds) 
  * into a valid Date object representing either 2025 or 2026.

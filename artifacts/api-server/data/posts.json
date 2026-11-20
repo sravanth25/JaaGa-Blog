@@ -870,7 +870,8 @@
         "question": "What can I do if the Tahsildar rejects my application?",
         "answer": "Under Section 15 of the 2025 Act, you can appeal to the Revenue Divisional Officer within 60 days, and further appeals lie within 30 days, up to the Land Tribunal."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1789038486217,
@@ -1213,7 +1214,8 @@
         "question": "Do I need an RTC, Khata, or EC for my property?",
         "answer": "It depends on the property and purpose. An RTC applies to agricultural land, while flats and buildings use a Khata instead. An Encumbrance Certificate (EC) shows the transaction and loan history. Many banks and registration processes ask for a combination, so confirm the exact requirement before applying."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1783600000000,
@@ -1261,7 +1263,8 @@
         "question": "Can I change the bill name if the previous owner has unpaid arrears?",
         "answer": "No. Any outstanding electricity arrears on the connection must be cleared before TGSPDCL approves the name change. Because unpaid dues stay attached to the service number rather than the person, buyers should verify that the account is fully paid before completing a property purchase or transfer."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1782799446773,
@@ -1379,7 +1382,8 @@
         "question": "What categories of property fall under Section 22A prohibited land in Telangana?",
         "answer": "The primary categories include: 1) Assigned land Telangana (granted to landless poor with transfer restrictions), 2) Endowment land Telangana (belonging to Hindu religious institutions), 3) Waqf property Telangana (Muslim religious/charitable trusts), 4) Ceiling surplus land (acquired under land ceiling laws), 5) Government Poramboke & Nazul lands, and 6) Lands under court injunction or attachment."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1782799446772,
@@ -1549,7 +1553,8 @@
         "question": "What is Bhunaksha in Maharashtra?",
         "answer": "Bhunaksha is the digital cadastral mapping system for Maharashtra that displays survey boundaries and the shape of land parcels. It helps owners and buyers visually confirm a plot's location and boundaries against its survey number, complementing text records like the 7/12 Utara and Property Card."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1780989761598,
@@ -1774,7 +1779,8 @@
         "question": "How can I download Telangana EC, RoR, and Pahani documents?",
         "answer": "You can download these Telangana land records digitally through the JaaGa app: install it, log in, select the required document, enter property details such as the survey number or district, search, and download instantly. This lets property owners and buyers access EC, RoR, and Pahani records without visiting a government office."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1768800049042,
@@ -1901,7 +1907,8 @@
         "answer": "A downloaded PDF EC is fine for personal checks, but banks, courts, and registration offices usually require a certified copy stamped by the Sub-Registrar. Apply for the certified version through IGRS Telangana or the relevant registration office when using the EC for loans or disputes."
       }
     ],
-    "primaryKeyword": "Telangana EC"
+    "primaryKeyword": "Telangana EC",
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1768800049039,
@@ -1943,7 +1950,8 @@
         "answer": "Adangal and 1B records are used in Telangana and Andhra Pradesh, where land administration is managed through portals like Dharani, Bhu-Bharati, and MeeBhoomi. The exact document names and access steps can vary between the two states, so use the portal designated for the property's location."
       }
     ],
-    "primaryKeyword": "ROR full form in land records"
+    "primaryKeyword": "ROR full form in land records",
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 1768800049038,
@@ -2356,7 +2364,8 @@
         "question": "Is the Maharashtra Property Card from JaaGa official?",
         "answer": "Yes. JaaGa fetches certified property card data directly from Mahabhulekh, Maharashtra's official land-records system, so the details match the government source. You can verify authenticity by cross-checking the ownership and survey information against your existing documents or the Mahabhulekh website."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 34,
@@ -2502,7 +2511,8 @@
         "question": "The Bhunaksha plot map isn't loading — what should I do?",
         "answer": "If the plot map won't load, clear your browser cache and retry, which resolves most display issues. A \"server busy\" message means the system is temporarily overloaded, so wait a while or switch your internet connection. Also confirm your khatiyan and plot numbers are entered correctly."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 31,
@@ -2702,7 +2712,8 @@
         "question": "Who can apply for a certified copy in Andhra Pradesh?",
         "answer": "Generally, the property owner, a legal heir, or an authorised representative can apply for a certified copy of a registered document in Andhra Pradesh. Because registered deeds are public records, interested parties can usually obtain a copy by providing the correct SRO, document number, and registration year."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-20T12:00:00.000Z"
   },
   {
     "id": 26,
