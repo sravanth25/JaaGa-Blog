@@ -1,4 +1,5 @@
 
+import 'react-quill-new/dist/quill.snow.css';
 
 
 import { useState, useEffect, useMemo, lazy, Suspense } from 'react';

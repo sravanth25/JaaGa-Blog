@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,25 +11,46 @@ import { categories } from "@/lib/data";
 import type { Post } from "@/lib/types";
 
 export default function BlogListClient({ posts }: { posts: Post[] }) {
-  const searchParams = useSearchParams();
-  const initialQuery = searchParams.get('q') || searchParams.get('search') || '';
-
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  // Keep query in sync if URL query parameter changes
+  // Read ?q= / ?search= after load. Using useSearchParams here would stop the
+  // post list from being included in the page HTML that search engines read.
   useEffect(() => {
-    const q = searchParams.get('q') || searchParams.get('search');
-    if (q !== null && q !== undefined) {
-      setSearchQuery(q);
-    }
-  }, [searchParams]);
+    const readQuery = () => {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q') ?? params.get('search');
+      if (q !== null) setSearchQuery(q);
+    };
+    readQuery();
+    window.addEventListener('popstate', readQuery);
+    return () => window.removeEventListener('popstate', readQuery);
+  }, []);
+
+  // Post bodies are not sent with the page; load the search text the first
+  // time someone searches, then search titles, tags and full text as before.
+  const [searchText, setSearchText] = useState<Record<string, string> | null>(null);
+  const wantsSearch = searchQuery.trim().length > 0;
+  useEffect(() => {
+    if (!wantsSearch || searchText) return;
+    let cancelled = false;
+    fetch("/search-index.json")
+      .then(res => (res.ok ? res.json() : {}))
+      .then(data => { if (!cancelled) setSearchText(data); })
+      .catch(() => { if (!cancelled) setSearchText({}); });
+    return () => { cancelled = true; };
+  }, [wantsSearch, searchText]);
+
+  const searchablePosts = useMemo(() => {
+    if (!searchText) return posts;
+    return posts.map(post => ({ ...post, content: searchText[post.slug] ?? post.content }));
+  }, [posts, searchText]);
 
   // 1. Filter by category first if one is selected
   const categoryFilteredPosts = useMemo(() => {
-    if (selectedCategory === "all") return posts;
-    return posts.filter(post => post.category === selectedCategory);
-  }, [selectedCategory, posts]);
+    if (selectedCategory === "all") return searchablePosts;
+    return searchablePosts.filter(post => post.category === selectedCategory);
+  }, [selectedCategory, searchablePosts]);
 
   // 2. Apply smart multi-token search with scoring & synonyms
   const filteredPosts = useMemo(() => {
@@ -182,8 +202,8 @@ export default function BlogListClient({ posts }: { posts: Post[] }) {
       {/* Blog Cards Grid */}
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map(post => (
-            <BlogPostCard key={post.id || post.slug} post={post} />
+          {filteredPosts.map((post, i) => (
+            <BlogPostCard key={post.id || post.slug} post={post} priority={i < 3} />
           ))}
         </div>
       ) : (

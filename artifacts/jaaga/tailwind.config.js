@@ -10,7 +10,7 @@ export default {
     extend: {
       fontFamily: {
         headline: ["var(--font-family-headline)", "sans-serif"],
-        body: ["Noto Sans", "sans-serif"],
+        body: ["var(--font-noto-sans)", "Noto Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

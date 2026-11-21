@@ -1,11 +1,19 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import 'react-quill-new/dist/quill.snow.css';
+import { Noto_Sans } from 'next/font/google';
 import {Header} from '@/components/common/header';
 import {Footer} from '@/components/common/footer';
 import {Toaster} from '@/components/ui/toaster';
 import {AuthProvider} from '@/context/auth-context';
 import { ChatbotPopup } from '@/components/chatbot/chatbot-popup';
+
+// Self-hosted at build time: no render-blocking request to Google Fonts.
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans',
+});
 
 const pageTitle = 'JaaGa: Download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch Online';
 const pageDescription = 'Access property documents online with JaaGa. Learn how to download EC, Adangal ROR, FMB Sketch, 7/12 Utara, and other land records quickly and securely.';
@@ -152,7 +160,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={notoSans.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -205,12 +213,6 @@ export default function RootLayout({
           }}
         />
         <meta name="google-site-verification" content="DXQ8v30NfhIWCK_BWdbspTx-6Jpi1TjsWvFbTytJhBI" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

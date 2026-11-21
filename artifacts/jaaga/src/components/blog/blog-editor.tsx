@@ -1,4 +1,5 @@
 
+import 'react-quill-new/dist/quill.snow.css';
 
 
 import { lazy, Suspense } from 'react';

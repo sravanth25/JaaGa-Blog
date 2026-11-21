@@ -122,7 +122,10 @@ export const metadata: Metadata = {
 
 export default async function BlogListPage() {
   const posts = getPosts();
-  const sortedPosts = [...posts].sort((a, b) => (b.id || 0) - (a.id || 0));
+  // Send only what the cards and search need; full post text loads on search.
+  const sortedPosts = [...posts]
+    .sort((a, b) => (b.id || 0) - (a.id || 0))
+    .map(({ content, faqs, extraSchema, ...summary }) => ({ ...summary, content: "" }));
   
   return (
     <div className="container mx-auto px-4 py-12 md:py-12">

@@ -3,34 +3,23 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Search} from 'lucide-react';
 import {categories} from '@/lib/data';
-import { Post } from '@/lib/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-export function PostSidebar() {
-  const router = useRouter();
+export function PostSidebar({ categoryCounts = {} }: { categoryCounts?: Record<string, number> }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
-  
-  useEffect(() => {
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(data => setAllPosts(data as Post[]))
-      .catch(() => {});
-  }, []);
 
-  const getCategoryCount = (slug: string) => {
-    return allPosts.filter(p => p.category === slug).length;
-  };
+  // Counts are computed at build time and passed in, instead of downloading every post.
+  const getCategoryCount = (slug: string) => categoryCounts[slug] ?? 0;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/blogs?q=${encodeURIComponent(searchQuery.trim())}`);
+      // Full navigation so the Blogs page always starts with this search.
+      window.location.href = `/blogs?q=${encodeURIComponent(searchQuery.trim())}`;
     }
   };
 

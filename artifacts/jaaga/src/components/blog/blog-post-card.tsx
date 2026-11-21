@@ -11,9 +11,11 @@ import {getOptimizedImageUrl} from '@/lib/utils';
 
 type BlogPostCardProps = {
   post: Post;
+  /** Load the image immediately (for cards visible without scrolling). */
+  priority?: boolean;
 };
 
-export function BlogPostCard({post}: BlogPostCardProps) {
+export function BlogPostCard({post, priority = false}: BlogPostCardProps) {
   const category = categories.find(c => c.slug === post.category);
 
   return (
@@ -24,6 +26,11 @@ export function BlogPostCard({post}: BlogPostCardProps) {
             <img
               src={getOptimizedImageUrl(post.featuredImage, 600)}
               alt={post.title}
+              width={600}
+              height={338}
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : "auto"}
+              decoding="async"
               className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-105"
             />
           </div>

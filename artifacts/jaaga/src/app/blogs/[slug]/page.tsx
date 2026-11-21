@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { getPosts } from '@/lib/server/data';
 import { blogSEOMap } from '@/lib/blog-seo-data';
-import { getPostDate, hasRealPostDate } from '@/lib/utils';
+import { getPostDate, hasRealPostDate, getOptimizedImageUrl } from '@/lib/utils';
 
 import {categories, services} from '@/lib/data';
 
@@ -120,6 +120,9 @@ export default async function BlogPostPage({params}: Props) {
   const relatedPosts = posts
     .filter(p => p.category === post.category && p.slug !== post.slug)
     .slice(0, 3);
+
+  const categoryCounts: Record<string, number> = {};
+  for (const p of posts) categoryCounts[p.category] = (categoryCounts[p.category] ?? 0) + 1;
 
   // Dates: only show a published date when the post ID is a real timestamp.
   const publishedDate = getPostDate(post.id, post.title, post.slug);
@@ -330,8 +333,12 @@ export default async function BlogPostPage({params}: Props) {
           {post.featuredImage && !cleanedContent.includes(post.featuredImage) && (
             <div className="relative w-full rounded-xl overflow-hidden mb-8 border border-border shadow-sm bg-muted/10">
               <img
-                src={post.featuredImage}
+                src={getOptimizedImageUrl(post.featuredImage, 1000)}
                 alt={imageAlt}
+                width={1000}
+                height={563}
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-auto object-contain block"
               />
             </div>
@@ -429,14 +436,22 @@ export default async function BlogPostPage({params}: Props) {
 
           <section className="space-y-8">
             <h2 className="font-headline text-2xl font-bold">Explore All Insights</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Text links keep every guide linked from every post without loading ~50 images. */}
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
               {posts
                 .filter(p => p.slug !== post.slug)
                 .sort((a, b) => (b.id || 0) - (a.id || 0))
                 .map(op => (
-                  <BlogPostCard key={op.id} post={op} />
+                  <li key={op.id}>
+                    <Link href={`/blogs/${op.slug}`} prefetch={false} className="text-primary hover:underline leading-snug">
+                      {blogSEOMap[op.slug]?.h1 || op.title}
+                    </Link>
+                  </li>
                 ))}
-            </div>
+            </ul>
+            <Link href="/blogs" className="inline-block font-semibold text-primary hover:underline">
+              Browse all guides with search and filters
+            </Link>
           </section>
 
           <Separator className="my-8" />
@@ -455,7 +470,7 @@ export default async function BlogPostPage({params}: Props) {
 
         <div className="lg:col-span-1">
           <div className="sticky top-24 space-y-8">
-            <PostSidebar />
+            <PostSidebar categoryCounts={categoryCounts} />
           </div>
         </div>
       </div>
