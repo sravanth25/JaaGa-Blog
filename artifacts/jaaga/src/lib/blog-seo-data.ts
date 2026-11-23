@@ -11,6 +11,17 @@ export interface BlogSEO {
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
+  "telangana-land-resurvey-2026-process-landowners": {
+    title: "Telangana Land Resurvey 2026: 6-Phase Process Explained",
+    description: "Telangana issued a 6-phase land resurvey procedure on 20 Nov 2026: 4-day notice, on-the-spot measurement, village camps. What changes and how to prepare.",
+    h1: "Telangana Land Resurvey 2026: The 6-Phase Process and What Landowners Must Do",
+    keywords: "telangana land resurvey, land resurvey telangana 2026, bhu bharati resurvey, land resurvey sop telangana, resurvey notice pattadar, pahani mismatch, village camp tahsildar, survey and boundaries act 1923, bhu bharati act 2025",
+    schemaType: "BlogPosting",
+    quickAnswer: "On 20 November 2026, Telangana issued a six-phase procedure for resurveying land in every district except Hyderabad. You get notice at least four days before the survey, the measured extent is told to you on the spot, and mismatches go to Tahsildar village camps before the survey is notified in the Gazette and your Bhu Bharati record is updated. Download your current Pahani and ROR 1B now so you can check the results.",
+    sources: [
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" }
+    ]
+  },
   "ptin-mandatory-property-registration-hyderabad": {
     title: "PTIN Must for Property Registration in Hyderabad | JaaGa",
     description: "Telangana now requires a PTIN or VLTIN to book property registration slots in Hyderabad's CURE limits. What changed, who is affected and how to get a PTIN.",
