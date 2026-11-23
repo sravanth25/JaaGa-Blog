@@ -168,7 +168,9 @@ export default async function BlogPostPage({params}: Props) {
     "@type": "BlogPosting",
     "headline": h1Text,
     "description": pageDesc,
-    "image": post.featuredImage || 'https://ik.imagekit.io/jaaga/ChatGPT%20Image%20Jan%205,%202026,%2011_05_39%20AM.png',
+    "image": post.featuredImage
+      ? new URL(post.featuredImage, 'https://blog.jaaga.ai').toString()
+      : 'https://ik.imagekit.io/jaaga/ChatGPT%20Image%20Jan%205,%202026,%2011_05_39%20AM.png',
     "author": jaagaAuthor,
     "publisher": {
       "@type": "Organization",
