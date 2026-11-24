@@ -13,11 +13,11 @@ export interface BlogSEO {
 export const blogSEOMap: Record<string, BlogSEO> = {
   "tippon-map-telangana-guide": {
     title: "Tippon Map Telangana: What It Shows & How to Get It",
-    description: "A Tippon is the original field sketch of a Telangana survey number. What it shows, how it differs from the village map and Pahani, and how to get a copy.",
+    description: "A Tippon is the original field sketch of a Telangana survey number. What it shows, how to read it, and how to download your Tippon map instantly online.",
     h1: "Tippon Map in Telangana: What It Shows, How to Get It and How to Use It",
     keywords: "tippon map telangana, tippan map, tippani, tippon map download, survey sketch telangana, fmb telangana, village map telangana, sethwar, certified tippon copy",
     schemaType: "BlogPosting",
-    quickAnswer: "A Tippon (also Tippan or Tippani) is the original field sketch of a single survey number in Telangana, showing its shape, boundary lengths and neighbouring survey numbers. Get a certified copy through MeeSeva or your Mandal Revenue Office using your district, mandal, village and survey number. It does not prove ownership, so always read it with the Pahani, ROR 1B and sale deed.",
+    quickAnswer: "A Tippon (also Tippan or Tippani) is the original field sketch of a single survey number in Telangana, showing its shape, boundary lengths and neighbouring survey numbers. You can download it instantly from JaaGa using your district, mandal, village and survey number, or apply for a certified copy at MeeSeva or your Mandal Revenue Office. It does not prove ownership, so always read it with the Pahani, ROR 1B and sale deed.",
     sources: [
       { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" }
     ]
