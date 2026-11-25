@@ -11,6 +11,19 @@ export interface BlogSEO {
 }
 
 export const blogSEOMap: Record<string, BlogSEO> = {
+  "hmda-land-auction-checks-before-you-bid": {
+    title: "HMDA Land Auction 2026: Checks Before You Bid",
+    description: "HMDA is auctioning Hyderabad plots till 27 Nov 2026. EMD, payment deadlines, zoning, FTL, court cases and land records: what to check before you bid.",
+    h1: "Buying at the HMDA Land Auction? Checks to Make Before You Bid",
+    keywords: "hmda auction, hmda land auction 2026, hmda e-auction, hmda plots auction hyderabad, mstc hmda auction, hmda emd, neopolis auction, moosapet auction, hmda auction checklist",
+    schemaType: "BlogPosting",
+    quickAnswer: "HMDA is auctioning plots in Hyderabad from 12 to 27 November 2026 through the MSTC e-auction portal; Neopolis and Moosapet bid on 27 November, with registration and EMD closing on 26 November. Before you bid, confirm the EMD and payment deadlines (reportedly 25% within 7 days, the rest within 60 days), visit the plot, and check zoning, lake buffer zones, court cases, 22A status and the EC of its survey numbers.",
+    sources: [
+      { name: "HMDA (Hyderabad Metropolitan Development Authority)", url: "https://www.hmda.gov.in" },
+      { name: "Bhu Bharati (Telangana land records)", url: "https://bhubharati.telangana.gov.in" },
+      { name: "IGRS Telangana (Registration & Stamps)", url: "https://registration.telangana.gov.in" }
+    ]
+  },
   "tippon-map-telangana-guide": {
     title: "Tippon Map Telangana: What It Shows & How to Get It",
     description: "A Tippon is the original field sketch of a Telangana survey number. What it shows, how to read it, and how to download your Tippon map instantly online.",
